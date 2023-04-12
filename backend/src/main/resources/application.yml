@@ -1,0 +1,24 @@
+# server port config
+server:
+  port:  8080
+
+# db driver config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/postreport
+    username: root
+    password: MYSQLDATA
+    hikari:
+      auto-commit: true
+
+  # jpa config
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: mysql
+    properties:
+      hibernate:
+        '[format_sql]': true
