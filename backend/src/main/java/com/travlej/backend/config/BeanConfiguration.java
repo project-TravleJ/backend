@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "com.travlej.backend")
 public class BeanConfiguration {
 
+    public BeanConfiguration() {}
+
     @Bean
     public ModelMapper modelMapper(){
+
 
         return new ModelMapper();
     }
