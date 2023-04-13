@@ -4,7 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+build.gradle
 !**/src/main/resources/application.yml
+
 
 ### STS ###
 .apt_generated
@@ -36,3 +38,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/travlej/backend/jwt/
