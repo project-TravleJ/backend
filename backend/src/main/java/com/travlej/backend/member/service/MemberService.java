@@ -1,5 +1,6 @@
 package com.travlej.backend.member.service;
 
+
 import com.travlej.backend.member.dto.MemberDTO;
 import com.travlej.backend.member.entity.Member;
 import com.travlej.backend.member.repository.MemberRepository;
@@ -7,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MemberService {
@@ -20,6 +23,12 @@ public class MemberService {
         this.memberRepository = memberRepository;
         this.modelMapper = modelMapper;
     }
+    public List<MemberDTO> findMemberList() {
+
+        List<Member> memberList = memberRepository.findAllMember();
+
+        return memberList.stream().map(member -> modelMapper.map(member, MemberDTO.class)).collect(Collectors.toList());
+    }
 
     public MemberDTO findMemberByCode(int memberCode) {
 
@@ -27,8 +36,4 @@ public class MemberService {
 
      return modelMapper.map(member, MemberDTO.class);
     }
-
-//    public MemberDTO findMemberList() {
-//
-//    }
 }

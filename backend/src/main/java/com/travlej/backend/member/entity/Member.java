@@ -1,9 +1,8 @@
 package com.travlej.backend.member.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -51,6 +50,7 @@ public class Member {
 
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default
+    @JsonManagedReference
     private List<Authority> roles = new ArrayList<>();
 
     public void setRoles(List<Authority> role) {

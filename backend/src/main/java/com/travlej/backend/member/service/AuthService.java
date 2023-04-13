@@ -3,6 +3,7 @@ package com.travlej.backend.member.service;
 import com.travlej.backend.jwt.JwtProvider;
 import com.travlej.backend.member.dto.MemberDTO;
 import com.travlej.backend.member.dto.RequestDTO;
+import com.travlej.backend.member.dto.ResponseDTO;
 import com.travlej.backend.member.entity.Authority;
 import com.travlej.backend.member.entity.Member;
 import com.travlej.backend.member.repository.MemberRepository;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -22,7 +24,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
-    public MemberDTO login(RequestDTO request) {
+    public ResponseDTO login(RequestDTO request) {
         Member member = memberRepository.findByMemberId(request.getMemberId()).orElseThrow(() ->
                 new BadCredentialsException("잘못된 계정 정보입니다."));
 
@@ -30,7 +32,7 @@ public class AuthService {
             throw new BadCredentialsException("잘못된 계정 정보입니다.");
         }
 
-        return MemberDTO.builder()
+        return ResponseDTO.builder()
                 .memberCode(member.getMemberCode())
                 .memberId(member.getMemberId())
                 .memberNickname(member.getMemberNickname())
@@ -49,7 +51,7 @@ public class AuthService {
             Member member = Member.builder()
                     .memberId(request.getMemberId())
                     .memberNickname(request.getMemberNickname())
-                    .memberPwd(request.getMemberPwd())
+                    .memberPwd(passwordEncoder.encode(request.getMemberPwd()))
                     .build();
 
             member.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
@@ -62,9 +64,9 @@ public class AuthService {
         return true;
     }
 
-    public MemberDTO getMember(String memberId) throws Exception {
+    public ResponseDTO getMember(String memberId) throws Exception {
         Member member = memberRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
-        return new MemberDTO(member);
+        return new ResponseDTO(member);
     }
 }

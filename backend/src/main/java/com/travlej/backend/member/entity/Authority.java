@@ -1,5 +1,6 @@
 package com.travlej.backend.member.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class Authority {
 
     @JoinColumn(name = "member")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Member member;
 
     public void setMember(Member member) {

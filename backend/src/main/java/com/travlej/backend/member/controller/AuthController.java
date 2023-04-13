@@ -29,4 +29,10 @@ public class AuthController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회원가입 성공!", memberService.register(request)));
     }
 
+    @GetMapping("/user/members")
+    public ResponseEntity<ResponseDto> getMember(@RequestParam String memberId) throws Exception {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회원 상세 조회 성공!", memberService.getMember(memberId)));
+    }
+
 }
