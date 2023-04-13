@@ -4,19 +4,19 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/request?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
-    password: fb97119016!
+    password: dudgp0204
 
 # jpa config
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
-        ddl-auto: create
+        ddl-auto: update
         '[format_sql]': true
 
 jwt:
