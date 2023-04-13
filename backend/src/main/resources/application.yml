@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/postreport?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
-    password: fb97119016!
+    password: MYSQLDATA
 
 # jpa config
   jpa:
@@ -19,9 +19,9 @@ spring:
         ddl-auto: create
         '[format_sql]': true
 
-jwt:
-  secret:
-    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+#jwt:
+#  secret:
+#    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
 
 
 

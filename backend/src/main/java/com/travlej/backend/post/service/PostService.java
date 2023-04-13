@@ -72,7 +72,7 @@ public class PostService {
         String context = updatePost.getContext();
 
         // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
-        if("".equals(title) || post.getPostTitle().equals(title)){
+        if(!"".equals(title) && !post.getPostTitle().equals(title)){
 //            title = post.getPostTitle();
             post.setPostTitle(title);
         }
