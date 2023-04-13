@@ -5,7 +5,10 @@ import com.travlej.backend.attraction.entity.Attraction;
 import com.travlej.backend.attraction.repository.AttractionRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,10 +35,24 @@ public class AttractionService {
 
     public List<AttractionDTO> findAttractionList(){
 
-        List<Attraction> attractionList = attractionRepository.findAll();
+        List<Attraction> attractionList = attractionRepository.findAll(Sort.by("attractionId"));
+//        List<Attraction> attractionList = attractionRepository.findByAttractionNameContaining("금각사");
 
         return attractionList.stream().map(attraction -> modelMapper.map(attraction, AttractionDTO.class)).collect(Collectors.toList());
     }
+
+    @Transactional
+    public AttractionDTO registNewAttraction(AttractionDTO newAttraction) {
+
+        Attraction result = attractionRepository.save(modelMapper.map(newAttraction, Attraction.class));
+
+        return modelMapper.map(result, AttractionDTO.class);
+    }
+//    @Transactional
+//    public void registNewAttraction(AttractionDTO newAttraction) {
+//
+//        attractionRepository.save(modelMapper.map(newAttraction, Attraction.class));
+//    }
 }
 
 

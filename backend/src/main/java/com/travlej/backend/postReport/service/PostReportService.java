@@ -5,6 +5,7 @@ import com.travlej.backend.postReport.entity.PostReport;
 import com.travlej.backend.repository.PostReportRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,22 @@ public class PostReportService {
         return modelMapper.map(result, PostReportDTO.class);
     }
 
+    @Transactional
+    public PostReportDTO updatePostReport(int reportId, PostReportDTO updatePostReport) {
+
+        PostReport postReport = postReportRepository.findById(reportId).get();
+
+        String reportManagement = updatePostReport.getReportManagement();
+
+        if(!"".equals(reportManagement) && !postReport.getReportManagement().equals(reportManagement)){
+            postReport.setReportManagement(reportManagement);
+        }
+
+        PostReport result = postReportRepository.save(postReport);
+
+        return modelMapper.map(result, PostReportDTO.class);
+    }
+
     public List<PostReportDTO> findAllPostReport() {
 
         List<PostReport> postReportList = postReportRepository.findAllPostReport();
@@ -47,5 +64,18 @@ public class PostReportService {
         return postReportList.stream().map(postReport -> modelMapper.map(postReport, PostReportDTO.class)).collect(Collectors.toList());
     }
 
+    public PostReportDTO findOnePostReport(int postReportId){
+
+        PostReport postReport = postReportRepository.findById(postReportId).get();
+
+        return modelMapper.map(postReport, PostReportDTO.class);
+    }
+    @Transactional
+    public Object deletePostReport(int reportId) {
+
+        postReportRepository.deleteById(reportId);
+
+        return null;
+    }
 }
 

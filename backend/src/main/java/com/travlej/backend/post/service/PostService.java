@@ -1,15 +1,13 @@
 package com.travlej.backend.post.service;
 
+import com.travlej.backend.course.entity.Course;
 import com.travlej.backend.post.dto.PostDTO;
 import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.post.repository.PostRepository;
-import org.hibernate.id.enhanced.StandardOptimizerDescriptor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +44,14 @@ public class PostService {
         return modelMapper.map(post, PostDTO.class);
     }
 
+    public List<PostDTO> findPostByPostTitle(String title){
+
+        List<Post> postList = postRepository.findByPostTitle(title);
+
+        return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
+    }
+
+    // post create
     @Transactional
     public PostDTO registNewPost(PostDTO newPost){
 
@@ -68,37 +74,31 @@ public class PostService {
         String title = updatePost.getPostTitle();
         java.util.Date start = updatePost.getPostStart();
         java.util.Date end = updatePost.getPostEnd();
-        String course = updatePost.getCourse();
+        List<Course> courseList = updatePost.getCourseList();
         String context = updatePost.getContext();
 
         // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
-        if("".equals(title) || post.getPostTitle().equals(title)){
-//            title = post.getPostTitle();
+        if(!"".equals(title) && !post.getPostTitle().equals(title)){    // 다음과 동일 if( !("".equals.(title) && post.getPostTitle().equals(title) ) )
             post.setPostTitle(title);
         }
-        if((null==start) || post.getPostStart().equals(start)) {
-//            start = post.getPostStart();
+        if((null!=start) && !post.getPostStart().equals(start)) {
             post.setPostStart(start);
         }
-        if((null==end) || post.getPostEnd().equals(end)){
-//            end = post.getPostEnd();
+        if((null!=end) && !post.getPostEnd().equals(end)){
             post.setPostEnd(end);
         }
-        if("".equals(course) || post.getCourse().equals(course)){
-//            course = post.getCourse();
-            post.setCourse(course);
+        if((null!=end) && !post.getCourseList().equals(courseList)){
+            post.setCourseList(courseList);
         }
-        if("".equals(context) || post.getContext().equals(context)){
-//            context = post.getContext();
+        if(!"".equals(context) && !post.getContext().equals(context)){
             post.setContext(context);
         }
+
+        System.out.println(post);
 
         java.util.Date date = new Date();
         post.setPostDate(date);
 
-//        Post result = postRepository.updatePost(
-//                postId, date, title, start, end, course, context
-//        );
         Post result = postRepository.save(post);
 
         return modelMapper.map(result, PostDTO.class);
