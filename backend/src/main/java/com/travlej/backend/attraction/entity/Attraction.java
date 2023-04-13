@@ -24,17 +24,17 @@ public class Attraction {
     private String attractionName;
 
     @Column(name = "lat")
-    private int attractionLat;
+    private double attractionLat;
 
     @Column(name = "lng")
-    private int attractionLng;
+    private double attractionLng;
 
     @Column(name = "def")
     private String attractionDef;
 
     public Attraction() {}
 
-    public Attraction(int attractionId, String attractionName, int attractionLat, int attractionLng, String attractionDef) {
+    public Attraction(int attractionId, String attractionName, double attractionLat, double attractionLng, String attractionDef) {
         this.attractionId = attractionId;
         this.attractionName = attractionName;
         this.attractionLat = attractionLat;
@@ -58,19 +58,19 @@ public class Attraction {
         this.attractionName = attractionName;
     }
 
-    public int getAttractionLat() {
+    public double getAttractionLat() {
         return attractionLat;
     }
 
-    public void setAttractionLat(int attractionLat) {
+    public void setAttractionLat(double attractionLat) {
         this.attractionLat = attractionLat;
     }
 
-    public int getAttractionLng() {
+    public double getAttractionLng() {
         return attractionLng;
     }
 
-    public void setAttractionLng(int attractionLng) {
+    public void setAttractionLng(double attractionLng) {
         this.attractionLng = attractionLng;
     }
 

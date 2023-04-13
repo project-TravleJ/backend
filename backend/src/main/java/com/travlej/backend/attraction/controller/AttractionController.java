@@ -2,12 +2,15 @@ package com.travlej.backend.attraction.controller;
 
 import com.travlej.backend.attraction.dto.AttractionDTO;
 import com.travlej.backend.attraction.service.AttractionService;
+import com.travlej.backend.common.ResponseDto;
+import com.travlej.backend.post.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -42,4 +45,24 @@ public class AttractionController {
 
         return mv;
     }
+
+    @GetMapping("/regist")
+    public void registPage(){}
+
+    @PostMapping("/regist")
+    public ResponseEntity<ResponseDto> registAttraction(@RequestBody AttractionDTO attractionDTO){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "어트랙션 등록 성공", attractionService.registNewAttraction(attractionDTO)));
+    }
+
+//    @PostMapping("/regist")
+//    public ModelAndView registAttraction(ModelAndView mv, AttractionDTO newAttraction, RedirectAttributes rttr) {
+//
+//        attractionService.registNewAttraction(newAttraction);
+//
+//        rttr.addFlashAttribute("registSuccessMessage", "어트랙션 등록 성공");
+//        mv.setViewName("redirect:/attraction/list");
+//
+//        return mv;
+//    }
 }
