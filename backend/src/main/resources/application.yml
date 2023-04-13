@@ -8,15 +8,16 @@ spring:
     username: root
     password: MYSQLDATA
 
+
 # jpa config
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
-        ddl-auto: create
+        ddl-auto: update
         '[format_sql]': true
 
 #jwt:
