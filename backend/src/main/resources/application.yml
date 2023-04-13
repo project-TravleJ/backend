@@ -4,10 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/postreport?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/attraction_test?useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: MYSQLDATA
-
+    password: bs7636511
 
 # jpa config
   jpa:

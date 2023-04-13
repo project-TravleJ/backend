@@ -4,14 +4,14 @@ public class AttractionDTO {
 
     private int attractionId;
     private String attractionName;
-    private int attractionLat;
-    private int attractionLng;
+    private double attractionLat;
+    private double attractionLng;
     private String attractionDef;
 
     private AttractionDTO() {
     }
 
-    public AttractionDTO(int attractionId, String attractionName, int attractionLat, int attractionLng, String attractionDef) {
+    public AttractionDTO(int attractionId, String attractionName, double attractionLat, double attractionLng, String attractionDef) {
         this.attractionId = attractionId;
         this.attractionName = attractionName;
         this.attractionLat = attractionLat;
@@ -35,19 +35,19 @@ public class AttractionDTO {
         this.attractionName = attractionName;
     }
 
-    public int getAttractionLat() {
+    public double getAttractionLat() {
         return attractionLat;
     }
 
-    public void setAttractionLat(int attractionLat) {
+    public void setAttractionLat(double attractionLat) {
         this.attractionLat = attractionLat;
     }
 
-    public int getAttractionLng() {
+    public double getAttractionLng() {
         return attractionLng;
     }
 
-    public void setAttractionLng(int attractionLng) {
+    public void setAttractionLng(double attractionLng) {
         this.attractionLng = attractionLng;
     }
 

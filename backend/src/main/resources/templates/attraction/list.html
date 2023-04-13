@@ -10,9 +10,9 @@
     <tr>
       <th>어트랙션 번호</th>
       <th>어트랙션 이름</th>
-      <th>어트랙션 lat</th>
-      <th>어트랙션 lng</th>
-      <th>어트랙션 def</th>
+      <th>어트랙션 위도</th>
+      <th>어트랙션 경도</th>
+      <th>어트랙션 내용</th>
     </tr>
     <tr th:each="attraction : ${ attractionList }">
       <td th:text="${ attraction.attractionId }"></td>
@@ -22,5 +22,9 @@
       <td th:text="${ attraction.attractionDef }"></td>
     </tr>
   </table>
+  <script>
+    const successMessage = "{[${ modifySuccessMessage }]}";
+    successMessage && alert(successMessage);
+  </script>
 </body>
 </html>
