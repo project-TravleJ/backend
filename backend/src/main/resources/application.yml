@@ -1,24 +1,47 @@
-# server port config
 server:
-  port:  8080
+  port: 8080
 
-# db driver config
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/postreport
+    url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
-    password: MYSQLDATA
-    hikari:
-      auto-commit: true
+    password: fb97119016!
 
-  # jpa config
+# jpa config
   jpa:
     generate-ddl: true
-    hibernate:
-      ddl-auto: create
     show-sql: true
     database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
+        ddl-auto: create
         '[format_sql]': true
+
+jwt:
+  secret:
+    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+
+
+
+## MySQL ??
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#
+## DB Source URL
+#spring.datasource.url=
+#
+## DB username
+#spring.datasource.username=<username>
+#
+## DB password
+#spring.datasource.password=<password>
+#
+## true ??? JPA ??? ?? ??
+#spring.jpa.show-sql=true
+#
+## DDL(create, alter, drop) ??? DB? ?? ??? ??? ? ??.
+#spring.jpa.hibernate.ddl-auto=update
+#
+## JPA? ???? Hibernate? ????? ??? SQL? ???? ????.
+#spring.jpa.properties.hibernate.format_sql=true

@@ -1,7 +1,8 @@
-package com.travlej.backend;
+package com.travlej.backend.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 public class BackendApplication {
