@@ -1,29 +1,46 @@
-# server port config
 server:
-  port:  8080
+  port: 8080
 
-# db driver config
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/attraction_test?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
-    password: bs7636511
+    password: fb97119016!
 
   # jpa config
   jpa:
-    generate-ddl: true
-    hibernate:
-      # ddl auto 설정: create - JPA가 DB와 상호작용시 기존의 스키마를 지우고 새로 생성, create-drop - JPA종료시점에서 기존에 있던 DB의 내용을 삭제
-      #               update - JPA에 의해 변경된 부분만 반영, validate - entity와 table이 정상 매핑 되어있는지 확인, none - 초기화 동작 안함
-      ddl-auto: update
     show-sql: true
     database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
         ddl-auto: update
         '[format_sql]': true
 
-#jwt:
-#  secret:
-#    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+jwt:
+  secret:
+    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+
+
+
+## MySQL ??
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#
+## DB Source URL
+#spring.datasource.url=
+#
+## DB username
+#spring.datasource.username=<username>
+#
+## DB password
+#spring.datasource.password=<password>
+#
+## true ??? JPA ??? ?? ??
+#spring.jpa.show-sql=true
+#
+## DDL(create, alter, drop) ??? DB? ?? ??? ??? ? ??.
+#spring.jpa.hibernate.ddl-auto=update
+#
+## JPA? ???? Hibernate? ????? ??? SQL? ???? ????.
+#spring.jpa.properties.hibernate.format_sql=true
