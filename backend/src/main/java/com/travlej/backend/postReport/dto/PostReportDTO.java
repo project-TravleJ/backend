@@ -13,6 +13,9 @@ public class PostReportDTO {
     private String reportManagement;
     private int reportPostId;
 
+    private java.util.Date postStart;
+    private java.util.Date postEnd;
+
     public PostReportDTO () {}
 
     public PostReportDTO(int reportId, String reportWriter, String reportToMember, Date reportDate, String reportReason, String reportDetails, String reportManagement, int reportPostId) {
