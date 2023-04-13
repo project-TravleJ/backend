@@ -1,11 +1,10 @@
 package com.travlej.backend.post.dto;
 
 
-import org.springframework.data.annotation.Id;
-import org.springframework.transaction.annotation.Transactional;
+import com.travlej.backend.course.entity.Course;
 
-import javax.persistence.Column;
 import java.util.Date;
+import java.util.List;
 
 public class PostDTO {
 
@@ -15,20 +14,20 @@ public class PostDTO {
     private String writer;
     private java.util.Date postStart;
     private java.util.Date postEnd;
-    private String course;
+    private List<Course> courseList;
     private String context;
     private int likes;
 
     public PostDTO() {}
 
-    public PostDTO(int postId, String postTitle, Date postDate, String writer, Date start, Date end, String course, String context, int likes) {
+    public PostDTO(int postId, String postTitle, Date postDate, String writer, Date start, Date end, List<Course> courseList, String context, int likes) {
         this.postId = postId;
         this.postTitle = postTitle;
         this.postDate = postDate;
         this.writer = writer;
         this.postStart = start;
         this.postEnd = end;
-        this.course = course;
+        this.courseList = courseList;
         this.context = context;
         this.likes = likes;
     }
@@ -81,9 +80,9 @@ public class PostDTO {
         this.postEnd = end;
     }
 
-    public String getCourse() { return course; }
+    public List<Course> getCourseList() { return courseList; }
 
-    public void setCourse(String course) { this.course = course; }
+    public void setCourseList(List<Course> courseList) { this.courseList = courseList; }
 
     public String getContext() { return context; }
 
@@ -106,7 +105,7 @@ public class PostDTO {
                 ", writer='" + writer + '\'' +
                 ", start=" + postStart +
                 ", end=" + postEnd + '\'' +
-                ", course=" + course + '\'' +
+                ", courseList=" + courseList.size() + '\'' +
                 ", context=" + context +
                 ", likes=" + likes +
                 '}';

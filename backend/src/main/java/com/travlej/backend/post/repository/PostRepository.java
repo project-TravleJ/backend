@@ -18,18 +18,4 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             , nativeQuery = true)
     List<Post> findByPostTitle(@Param("postTitle")String postTitle);
 
-
-    @Query(value="UPDATE POST A " +
-            "SET A.POST_DATE = :date, A.POST_TITLE = :title, A.POST_START = :start, " +
-            "A.POST_END = :end, A.COURSE = :course, A.POST_CONTEXT = :context " +
-            "WHERE POST_ID LIKE :postId", nativeQuery = true)
-    Post updatePost(
-            @Param("postId") int postId,
-            @Param("date") java.util.Date date,
-            @Param("title") String title,
-            @Param("start") java.util.Date start,
-            @Param("end") java.util.Date end,
-            @Param("course") String course,
-            @Param("context") String context
-    );
 }

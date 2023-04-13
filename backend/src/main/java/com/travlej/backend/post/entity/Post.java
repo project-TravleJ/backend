@@ -1,5 +1,7 @@
 package com.travlej.backend.post.entity;
 
+import com.travlej.backend.course.entity.Course;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +34,8 @@ public class Post {
     @Column(name = "POST_END")
     private java.util.Date postEnd;
 
-    @Column(name = "COURSE")
-    private String course;
+    @OneToMany(mappedBy = "post")
+    private List<Course> courseList;
 
     @Column(name = "POST_CONTEXT")
     private String context;
@@ -43,14 +45,14 @@ public class Post {
 
     public Post() {}
 
-    public Post(int postId, String postTitle, Date postDate, String writer, Date postStart, Date postEnd, String course, String context, int likes) {
+    public Post(int postId, String postTitle, Date postDate, String writer, Date postStart, Date postEnd, List<Course> courseList, String context, int likes) {
         this.postId = postId;
         this.postTitle = postTitle;
         this.postDate = postDate;
         this.writer = writer;
         this.postStart = postStart;
         this.postEnd = postEnd;
-        this.course = course;
+        this.courseList = courseList;
         this.context = context;
         this.likes = likes;
     }
@@ -103,9 +105,9 @@ public class Post {
         this.postEnd = postEnd;
     }
 
-    public String getCourse() { return course; }
+    public List<Course> getCourseList() { return courseList; }
 
-    public void setCourse(String course) { this.course = course; }
+    public void setCourseList(List<Course> courseList) { this.courseList = courseList; }
 
     public String getContext() {
         return context;

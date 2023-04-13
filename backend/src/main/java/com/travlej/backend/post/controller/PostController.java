@@ -21,6 +21,7 @@ public class PostController {
         this.postService = postService;
     }
 
+
     @GetMapping("/")
     public ResponseEntity<ResponseDto> selectPostAll(){
 
@@ -33,6 +34,13 @@ public class PostController {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 조회 성공", postService.findPostByPostId(postId)));
     }
+
+    @GetMapping("/?search={title}")
+    public ResponseEntity<ResponseDto> selectPostByTitle(@PathVariable String title){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "제목 검색 조회",postService.findPostByPostTitle(title)));
+    }
+
 
 
     @GetMapping("/regist")
