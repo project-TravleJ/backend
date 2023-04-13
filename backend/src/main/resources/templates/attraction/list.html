@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div th:replace="common/headr.html"></div>
+  <table align="center">
+    <tr>
+      <th>어트랙션 번호</th>
+      <th>어트랙션 이름</th>
+      <th>어트랙션 lat</th>
+      <th>어트랙션 lng</th>
+      <th>어트랙션 def</th>
+    </tr>
+    <tr th:each="attraction : ${ attractionList }">
+      <td th:text="${ attraction.attractionId }"></td>
+      <td th:text="${ attraction.attractionName }"></td>
+      <td th:text="${ attraction.attractionLat }"></td>
+      <td th:text="${ attraction.attractionLng }"></td>
+      <td th:text="${ attraction.attractionDef }"></td>
+    </tr>
+  </table>
+</body>
+</html>
