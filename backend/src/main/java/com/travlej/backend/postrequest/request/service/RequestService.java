@@ -44,11 +44,14 @@ public class RequestService {
 
     @Transactional
     public RequestDTO registNewRequest(RequestDTO newRequest){
+        System.out.println(1);
+
 
 
         //저장하는 메소드 Repo.save()
         Request result = requestRepository.save(modelMapper.map(newRequest, Request.class));
 
+        System.out.println(2);
         return modelMapper.map(result, RequestDTO.class);
     }
 
@@ -60,10 +63,20 @@ public class RequestService {
 
         // 입력받은 DTO를 통해 변경할 값들을 모두 추출함
         String requestManagement = updateRequest.getRequestManagement();
+        String title = updateRequest.getTitle();
+        String context = updateRequest.getContext();
 
-        // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
-        if(!"".equals(requestManagement) && !request.getRequestManagement().equals(requestManagement)){
+        // update값이 비어있지 않다면, 갱신함
+        if(requestManagement != null && !requestManagement.isEmpty()){
             request.setRequestManagement(requestManagement);
+        }
+
+        if(title != null && !title.isEmpty()){
+            request.setTitle(title);
+        }
+
+        if(context != null && !context.isEmpty()){
+            request.setContext(context);
         }
 
         Request result = requestRepository.save(request);

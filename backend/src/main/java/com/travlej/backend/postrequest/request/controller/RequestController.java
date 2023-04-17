@@ -33,10 +33,17 @@ public class RequestController {
     }
 
     @PostMapping("/request")
-    public ResponseEntity<ResponseDto> registRequest(@RequestBody RequestDTO requestDto){
-
+    public ResponseEntity<ResponseDto> registRequest(@RequestBody(required = false) RequestDTO requestDto) {
+        System.out.println(1);
+        System.out.println(requestDto);
+        if (requestDto == null) {
+            return ResponseEntity.badRequest().body(new ResponseDto(HttpStatus.BAD_REQUEST, "RequestDTO가 null입니다.", null));
+        }
+        System.out.println(2);
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 등록 성공", requestService.registNewRequest(requestDto)));
     }
+
+
 
     @PutMapping("/{requestId}")
     public ResponseEntity<ResponseDto> updateRequest(@PathVariable int requestId, @RequestBody RequestDTO requestDTO){
