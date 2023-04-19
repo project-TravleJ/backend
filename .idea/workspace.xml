@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7789d201-3f17-4c5f-ad00-6321ad078840" name="변경" comment="" />
+    <list default="true" id="7789d201-3f17-4c5f-ad00-6321ad078840" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/backend.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/bulletinInfo/controller/BulletinInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/bulletinInfo/dto/BulletinInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/bulletinInfo/entity/BulletinInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/bulletinInfo/repository/BulletinInfoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/bulletinInfo/service/BulletinInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/bulletinInfo/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/controller/AttractionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/controller/AttractionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/dto/AttractionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/dto/AttractionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/entity/Attraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/entity/Attraction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/repository/AttractionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/repository/AttractionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/service/AttractionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/service/AttractionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/config/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/config/BackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/main/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/main/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/attraction/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/attraction/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/attraction/one.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/attraction/one.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,8 +65,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -60,6 +83,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -67,7 +91,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/tjoeun/Documents/backend",
+    "last_opened_file_path": "C:/tjoen_java/프로젝트/중간프로젝트/frontend_travelj(v3)",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,7 +101,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "65306faa9d469c5ca5600884bf8254f7",
+    "spring.configuration.checksum": "3241ca6184e7e06d7e2313367e60913a",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -98,7 +122,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication (3)">
+  <component name="RunManager">
     <configuration name="backend" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -176,7 +200,7 @@
       </method>
     </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="backend.backend" />
+      <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.travlej.backend.config.BackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,8 +217,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.BackendApplication (3)" />
         <item itemvalue="Gradle.C:/Users/tjoeun/Documents/backend/backend" />
+        <item itemvalue="Spring Boot.BackendApplication (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -209,6 +233,15 @@
       <workItem from="1681178919872" duration="13459000" />
       <workItem from="1681196406923" duration="44652000" />
       <workItem from="1681345882162" duration="30402000" />
+      <workItem from="1681435139235" duration="21799000" />
+      <workItem from="1681466754369" duration="1123000" />
+      <workItem from="1681558429768" duration="165000" />
+      <workItem from="1681644213845" duration="3841000" />
+      <workItem from="1681689030418" duration="20592000" />
+      <workItem from="1681719854091" duration="2077000" />
+      <workItem from="1681788760584" duration="9939000" />
+      <workItem from="1681818737284" duration="2344000" />
+      <workItem from="1681861909289" duration="14605000" />
     </task>
     <servers />
   </component>

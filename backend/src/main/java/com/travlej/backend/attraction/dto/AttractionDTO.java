@@ -8,8 +8,7 @@ public class AttractionDTO {
     private double attractionLng;
     private String attractionDef;
 
-    private AttractionDTO() {
-    }
+    private AttractionDTO() {}
 
     public AttractionDTO(int attractionId, String attractionName, double attractionLat, double attractionLng, String attractionDef) {
         this.attractionId = attractionId;
