@@ -1,9 +1,7 @@
 package com.travlej.backend.member.controller;
 
 import com.travlej.backend.common.ResponseDto;
-import com.travlej.backend.member.dto.MemberDTO;
 import com.travlej.backend.member.dto.RequestDTO;
-import com.travlej.backend.member.repository.MemberRepository;
 import com.travlej.backend.member.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final MemberRepository memberRepository;
     private final AuthService memberService;
 
     @PostMapping(value = "/login")

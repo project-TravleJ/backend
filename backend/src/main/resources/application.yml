@@ -1,16 +1,43 @@
 server:
   port: 8080
 
+#  spring:
+#    datasource:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://@mysql.team-greedy.com:3306/travelj?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+#      username: travelj
+#      password: travelj
+#
+#    # jpa config
+#    jpa:
+#      generate-ddl: true
+#      show-sql: true
+#      database: mysql
+#      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#      properties:
+#        hibernate:
+#          ddl-auto: update
+#          '[format_sql]': true
+#
+#  jwt:
+#    secret:
+#      key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+#
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Drive
     url: jdbc:mysql://@mysql.team-greedy.com:3306/travelj?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: travelj
     password: travelj
+#  security:
+#    oauth2:
+#      client:
+#        clientId: 30823325928-s78h21h30dql6640ufj13jt5lhmov706.apps.googleusercontent.com
+#        clientSecret: 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
 
   # jpa config
   jpa:
-    generate-ddl: true
+#    generate-ddl: true
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -18,6 +45,9 @@ spring:
       hibernate:
         ddl-auto: update
         '[format_sql]': true
+
+mybatis:
+  mapper-locations: mybatis/**/*.xml
 
 jwt:
   secret:

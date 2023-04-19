@@ -55,7 +55,7 @@ public class SecurityConfiguration {
 //                    c.configurationSource(source);
 //                }
 //        )
-        // Spring Security 세션 정책 : 세션을 생성 및 사용하지 않음
+                // Spring Security 세션 정책 : 세션을 생성 및 사용하지 않음
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // 조건별로 요청 허용/제한 설정
@@ -63,11 +63,10 @@ public class SecurityConfiguration {
                 // 일단 모두 승인
                 .antMatchers("/**").permitAll()
                 // 회원가입과 로그인은 모두 승인
-//                .antMatchers("/register", "/login").permitAll()
-                // /admin으로 시작하는 요청은 ADMIN 권한이 있는 유저에게만 허용
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-                // /user로 시작하는 요청은 USER 권한이 있는 유저에게만 허용
-//                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/auth/**").permitAll()
+                // 나머지 API 는 전부 인증 필요
+                .antMatchers("/api/**").hasRole("USER")
+                .antMatchers("/api/**").hasRole("ADMIN")
                 .anyRequest().denyAll()
                 .and()
                 // JWT 인증 필터 적용

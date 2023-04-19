@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +35,7 @@ public class JwtProvider {
 
     @PostConstruct
     protected void init() {
-        jwtsecretKey = Keys.hmacShaKeyFor(salt.getBytes(StandardCharsets.UTF_8));
-    }
+        jwtsecretKey = Keys.hmacShaKeyFor(salt.getBytes(StandardCharsets.UTF_8));}
 
     // 토큰 생성
     public String createToken(String memberId, List<Authority> roles) {

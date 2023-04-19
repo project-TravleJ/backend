@@ -1,16 +1,14 @@
 package com.travlej.backend.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor @NoArgsConstructor @Builder
 public class Authority {
 

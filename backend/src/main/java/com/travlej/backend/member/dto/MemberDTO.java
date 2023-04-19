@@ -4,6 +4,8 @@ import com.travlej.backend.member.entity.Authority;
 import com.travlej.backend.member.entity.Member;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class MemberDTO {
         this.joinDate = member.getJoinDate();
         this.lastAccessDate = member.getLastAccessDate();
         this.roles = member.getRoles();
+//        this.token = member.getToken();
     }
 
 
