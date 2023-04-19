@@ -1,6 +1,10 @@
 package com.travlej.backend.post.service;
 
+import com.travlej.backend.course.dto.CourseDTO;
 import com.travlej.backend.course.entity.Course;
+import com.travlej.backend.course.repository.CourseRepository;
+import com.travlej.backend.course.service.CourseService;
+import com.travlej.backend.post.dto.PostCourseDTO;
 import com.travlej.backend.post.dto.PostDTO;
 import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.post.repository.PostRepository;
@@ -25,6 +29,9 @@ public class PostService {
     private final ModelMapper modelMapper;
 
     @Autowired
+    private CourseService courseService;
+
+    @Autowired
     public PostService(PostRepository postRepository, ModelMapper modelMapper) {
         this.postRepository = postRepository;
         this.modelMapper = modelMapper;
@@ -44,9 +51,14 @@ public class PostService {
         return modelMapper.map(post, PostDTO.class);
     }
 
+    public Post findPostEntityByPostId(int postId){
+
+        return postRepository.findById(postId).get();
+    }
+
     public List<PostDTO> findPostByPostTitle(String title){
 
-        List<Post> postList = postRepository.findByPostTitle(title);
+        List<Post> postList = postRepository.findByPostTitleContaining(title);
 
         return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
     }
@@ -55,11 +67,10 @@ public class PostService {
     @Transactional
     public PostDTO registNewPost(PostDTO newPost){
 
-//        log.info("[PostService] registNewPost Start ==========================");
-//        log.info("[PostService] postDTO : " + newPost);
-
         //저장하는 메소드 Repo.save()
         Post result = postRepository.save(modelMapper.map(newPost, Post.class));
+
+        result.setPostDate(new java.util.Date());
 
         return modelMapper.map(result, PostDTO.class);
     }
@@ -74,7 +85,7 @@ public class PostService {
         String title = updatePost.getPostTitle();
         java.util.Date start = updatePost.getPostStart();
         java.util.Date end = updatePost.getPostEnd();
-        List<Course> courseList = updatePost.getCourseList();
+        List<CourseDTO> courseList = updatePost.getCourseList();
         String context = updatePost.getContext();
 
         // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
@@ -87,8 +98,8 @@ public class PostService {
         if((null!=end) && !post.getPostEnd().equals(end)){
             post.setPostEnd(end);
         }
-        if((null!=end) && !post.getCourseList().equals(courseList)){
-            post.setCourseList(courseList);
+        if((null!=courseList || courseList.size()==0) && !post.getCourseList().equals(courseList)){
+            post.setCourseList(courseList.stream().map(course -> modelMapper.map(course, Course.class)).collect(Collectors.toList()));
         }
         if(!"".equals(context) && !post.getContext().equals(context)){
             post.setContext(context);
@@ -109,8 +120,29 @@ public class PostService {
 
         postRepository.deleteById(postId);
 
-        return null;
+        return "null";
     }
 
+    @Autowired
+    private CourseRepository courseRepository;
+    @Transactional
+    public PostDTO registNewPostWithCourse(PostDTO postDTO) {
 
+        Post post = modelMapper.map(postDTO, Post.class);
+
+        List<CourseDTO> courseList = postDTO.getCourseList();
+        for(CourseDTO courseDTO: courseList){
+            Course course = modelMapper.map(courseDTO, Course.class);
+            course.setPost(post);
+        }
+
+        return modelMapper.map(post, PostDTO.class);
+    }
+
+    public List<PostDTO> selectDetailSearch(PostDTO postDTO) {
+
+        List<Post> postList = postRepository.findByWriterContainingAndPostDate(postDTO.getWriter(), postDTO.getPostDate());
+
+        return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
+    }
 }
