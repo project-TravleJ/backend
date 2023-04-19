@@ -3,6 +3,7 @@ package com.travlej.backend.attraction.repository;
 import com.travlej.backend.attraction.dto.AttractionDTO;
 import com.travlej.backend.attraction.entity.Attraction;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -19,8 +20,14 @@ import java.util.List;
  * ex> findByAttracionId() <- 생략가능
  * */
 
+@Repository
 public interface AttractionRepository extends JpaRepository<Attraction, Integer> {
 
-    List<Attraction> findByAttractionNameContaining(String attractionName);
-
+//    List<Attraction> findByAttractionNameContaining(String attractionName);
 }
+
+//public interface AttractionRepository extends JpaRepository<Attraction, Long> {}
+
+
+
+
