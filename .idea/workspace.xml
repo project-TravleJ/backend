@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7789d201-3f17-4c5f-ad00-6321ad078840" name="변경" comment="" />
+    <list default="true" id="7789d201-3f17-4c5f-ad00-6321ad078840" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,8 +45,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -80,12 +83,12 @@
     "spring.configuration.checksum": "65306faa9d469c5ca5600884bf8254f7",
     "vue.rearranger.settings.migration": "true"
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.travlej.backend.member.entity" />
@@ -98,7 +101,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication (3)">
+  <component name="RunManager">
     <configuration name="backend" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -176,7 +179,7 @@
       </method>
     </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="backend.backend" />
+      <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.travlej.backend.config.BackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,8 +196,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.BackendApplication (3)" />
         <item itemvalue="Gradle.C:/Users/tjoeun/Documents/backend/backend" />
+        <item itemvalue="Spring Boot.BackendApplication (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -209,6 +212,17 @@
       <workItem from="1681178919872" duration="13459000" />
       <workItem from="1681196406923" duration="44652000" />
       <workItem from="1681345882162" duration="130821000" />
+      <workItem from="1681345882162" duration="30402000" />
+      <workItem from="1681435139235" duration="21799000" />
+      <workItem from="1681466754369" duration="1123000" />
+      <workItem from="1681558429768" duration="165000" />
+      <workItem from="1681644213845" duration="3841000" />
+      <workItem from="1681689030418" duration="20592000" />
+      <workItem from="1681719854091" duration="2077000" />
+      <workItem from="1681788760584" duration="9939000" />
+      <workItem from="1681818737284" duration="2344000" />
+      <workItem from="1681861909289" duration="14605000" />
+      <workItem from="1681898600886" duration="944000" />
     </task>
     <servers />
   </component>
