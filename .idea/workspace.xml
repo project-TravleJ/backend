@@ -67,7 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/tjoeun/Documents/backend",
+    "last_opened_file_path": "C:/Users/tjoeun/Documents/카카오톡 받은 파일/react-springboot-jwt_스프링부트(RestAPI) + 리액트 + jwt 로그인/springboot-restapi",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -163,7 +163,7 @@
       </method>
     </configuration>
     <configuration name="BackendApplication (3)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="backend.backend.main~1" />
+      <module name="backend.backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.travlej.backend.config.BackendApplication" />
       <extension name="coverage">
         <pattern>
@@ -208,7 +208,7 @@
       <updated>1681178917677</updated>
       <workItem from="1681178919872" duration="13459000" />
       <workItem from="1681196406923" duration="44652000" />
-      <workItem from="1681345882162" duration="30402000" />
+      <workItem from="1681345882162" duration="130821000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/vi/")
+@RequestMapping("/api/v1/")
 public class CourseController {
 
     private final CourseService courseService;
