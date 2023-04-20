@@ -17,15 +17,15 @@ public class BulletinInfo {
             strategy = GenerationType.SEQUENCE,
             generator = "BULLETININFO_SEQ_GENERATOR"
     )
-    @Column(name = "code")
+    @Column(name = "BULLET_INFO_CODE")
     private int bulletinInfoCode;
-    @Column(name = "subject")
+    @Column(name = "BULLET_INFP_SUBJECT")
     private String bulletinInfoSubject;
-    @Column(name = "date")
+    @Column(name = "BULLET_INFO_DATE")
     private String bulletinInfoDate;
-    @Column(name = "case")
+    @Column(name = "BULLET_INFO_CASE")
     private String bulletinInfoCase;
-    @Column(name = "nick")
+    @Column(name = "BULLET_INFO_NICK")
     private String bulletinInfoNick;
 
     public BulletinInfo() {}
