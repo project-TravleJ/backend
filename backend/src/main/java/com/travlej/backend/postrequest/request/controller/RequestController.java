@@ -57,4 +57,10 @@ public class RequestController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 완료", requestService.deleteRequest(requestId)));
     }
 
+    @PostMapping("/search")
+    public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody(required = false) RequestDTO requestDTO){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
+    }
+
 }

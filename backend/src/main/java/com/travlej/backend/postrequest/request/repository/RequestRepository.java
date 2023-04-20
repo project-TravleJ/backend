@@ -11,15 +11,11 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
     List<Request> findByTitleContaining(String title);
 
-    @Query(value="SELECT R.REQUEST_ID, R.TITLE, R.DATE, R.WRITER, R.CONTEXT, R.REQUEST_MANAGEMENT " +
-            "FROM REQUEST R " +
-            "WHERE R.TITLE LIKE :title " +
-            "ORDER BY R.DATE DESC", nativeQuery = true)
-    List<Request> findByRequestTitle(@Param("title")String title);
-
+    List<Request> findByWriterContainingAndTitleContainingAndRequestManagementContaining(String writer, String title, String requestManagement);
 
     @Query(value="UPDATE REQUEST R " +
-            "SET R.DATE = :date, R.TITLE = :title, R.CONTEXT = :context " +
-            "WHERE REQUEST_MANAGEMENT LIKE :requestManagement", nativeQuery = true)
+            "SET R.REQUEST_MANAGEMENT :requestManagement " +
+            "WHERE REQUEST_ID LIKE : requestId ", nativeQuery = true)
     List<Request> findByManagement(@Param("requestManagement")String requestManagement);
 }
+

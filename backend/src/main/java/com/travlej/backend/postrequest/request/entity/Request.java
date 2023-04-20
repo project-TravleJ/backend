@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity(name = "Request")
-@Table(name = "REQUESTS")
+@Table(name = "REQUEST")
 public class Request {
 
     @Id
