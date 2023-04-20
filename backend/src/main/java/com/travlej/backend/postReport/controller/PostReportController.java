@@ -1,6 +1,7 @@
 package com.travlej.backend.postReport.controller;
 
 import com.travlej.backend.common.ResponseDto;
+import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.postReport.dto.PostReportDTO;
 import com.travlej.backend.postReport.service.PostReportService;
 import com.travlej.backend.repository.PostReportRepository;
@@ -51,6 +52,12 @@ public class PostReportController {
    public ResponseEntity<ResponseDto> deletePost(@PathVariable int reportId){
 
       return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 성공", postReportService.deletePostReport(reportId)));
+   }
+
+   @PostMapping("searchReport")
+   public ResponseEntity<ResponseDto> searchReport(@RequestBody PostReportDTO postReportDTO){
+
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
    }
       
 }

@@ -77,5 +77,13 @@ public class PostReportService {
 
         return null;
     }
+
+    public List<PostReportDTO> detailSearchReport(PostReportDTO postReportDTO){
+
+        List<PostReport> postReportList = postReportRepository.findByReportWriterContainingAndReportToMemberContainingAndReportDateContaining(postReportDTO.getReportWriter(), postReportDTO.getReportToMember(), postReportDTO.getReportDate());
+
+        return postReportList.stream().map(PostReport -> modelMapper.map(PostReport, PostReportDTO.class)).collect(Collectors.toList());
+
+}
 }
 

@@ -7,7 +7,7 @@ public class PostReportDTO {
     private int reportId;
     private String reportWriter;
     private String reportToMember;
-    private java.util.Date reportDate;
+    private String reportDate;
     private String reportReason;
     private String reportDetails;
     private String reportManagement;
@@ -18,7 +18,7 @@ public class PostReportDTO {
 
     public PostReportDTO () {}
 
-    public PostReportDTO(int reportId, String reportWriter, String reportToMember, Date reportDate, String reportReason, String reportDetails, String reportManagement, int reportPostId) {
+    public PostReportDTO(int reportId, String reportWriter, String reportToMember, String reportDate, String reportReason, String reportDetails, String reportManagement, int reportPostId) {
         this.reportId = reportId;
         this.reportWriter = reportWriter;
         this.reportToMember = reportToMember;
@@ -53,11 +53,11 @@ public class PostReportDTO {
         this.reportToMember = reportToMember;
     }
 
-    public Date getReportDate() {
+    public String getReportDate() {
         return reportDate;
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(String reportDate) {
         this.reportDate = reportDate;
     }
 
