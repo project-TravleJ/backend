@@ -93,3 +93,65 @@ public class Attraction {
                 '}';
     }
 }
+
+
+//public class Attraction {
+//    @Id
+//    private Long id;
+//    private String name;
+//    @Column(columnDefinition = "json")
+//    private String loc;
+//    private String def;
+//
+//    public Attraction(){}
+//
+//    public Attraction(Long id, String name, String loc, String def) {
+//        this.id = id;
+//        this.name = name;
+//        this.loc = loc;
+//        this.def = def;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getLoc() {
+//        return loc;
+//    }
+//
+//    public void setLoc(String loc) {
+//        this.loc = loc;
+//    }
+//
+//    public String getDef() {
+//        return def;
+//    }
+//
+//    public void setDef(String def) {
+//        this.def = def;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Attraction{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", loc='" + loc + '\'' +
+//                ", def='" + def + '\'' +
+//                '}';
+//    }
+//}
+

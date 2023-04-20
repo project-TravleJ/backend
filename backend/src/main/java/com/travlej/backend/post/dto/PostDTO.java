@@ -1,8 +1,10 @@
 package com.travlej.backend.post.dto;
 
 
+import com.travlej.backend.course.dto.CourseDTO;
 import com.travlej.backend.course.entity.Course;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,13 +16,13 @@ public class PostDTO {
     private String writer;
     private java.util.Date postStart;
     private java.util.Date postEnd;
-    private List<Course> courseList;
+    private List<CourseDTO> courseList;
     private String context;
     private int likes;
 
     public PostDTO() {}
 
-    public PostDTO(int postId, String postTitle, Date postDate, String writer, Date start, Date end, List<Course> courseList, String context, int likes) {
+    public PostDTO(int postId, String postTitle, Date postDate, String writer, Date start, Date end, List<CourseDTO> courseList, String context, int likes) {
         this.postId = postId;
         this.postTitle = postTitle;
         this.postDate = postDate;
@@ -80,9 +82,9 @@ public class PostDTO {
         this.postEnd = end;
     }
 
-    public List<Course> getCourseList() { return courseList; }
+    public List<CourseDTO> getCourseList() { return courseList; }
 
-    public void setCourseList(List<Course> courseList) { this.courseList = courseList; }
+    public void setCourseList(List<CourseDTO> courseList) { this.courseList = courseList; }
 
     public String getContext() { return context; }
 

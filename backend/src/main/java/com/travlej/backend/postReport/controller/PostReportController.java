@@ -5,6 +5,7 @@ import com.travlej.backend.postReport.dto.PostReportDTO;
 import com.travlej.backend.postReport.service.PostReportService;
 import com.travlej.backend.repository.PostReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,11 +23,10 @@ public class PostReportController {
    @Autowired
    public PostReportController(PostReportService postReportService) { this.postReportService = postReportService; }
 
-   @GetMapping(value = "/list", produces = "application/json; charset=UTF-8")
-   @ResponseBody
-   public List<PostReportDTO> findPostReportList() {
+   @GetMapping(value = "/list")
+   public  ResponseEntity<ResponseDto> findPostReportList() {
 
-      return postReportService.findAllPostReport();
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "신고글 조회 성공", postReportService.findAllPostReport()));
    }
    @PostMapping("/reportPost")
    public ResponseEntity<ResponseDto> registPostReport(@RequestBody PostReportDTO postReportDTO){

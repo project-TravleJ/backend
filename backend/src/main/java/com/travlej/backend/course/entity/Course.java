@@ -27,13 +27,17 @@ public class Course {
     @ManyToOne
     private Attraction attraction;
 
+    @Column(name  = "MEMO")
+    private String courseMemo;
+
     public Course() {}
 
-    public Course(int courseId, int idx, Post post, Attraction attraction) {
+    public Course(int courseId, int idx, Post post, Attraction attraction, String courseMemo) {
         CourseId = courseId;
         this.idx = idx;
         this.post = post;
         this.attraction = attraction;
+        this.courseMemo = courseMemo;
     }
 
     public int getCourseId() {
@@ -68,13 +72,22 @@ public class Course {
         this.attraction = attraction;
     }
 
+    public String getCourseMemo(){
+        return courseMemo;
+    }
+
+    public void setCourseMemo(String courseMemo){
+        this.courseMemo = courseMemo;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "CourseId=" + CourseId +
                 ", idx=" + idx +
                 ", post=" + post +
-                ", attraction=" + attraction +
+                ", attraction=" + attraction.getAttractionName() +
+                ", memo=" + courseMemo +
                 '}';
     }
 }

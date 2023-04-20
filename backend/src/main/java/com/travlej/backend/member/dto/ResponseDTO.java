@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +36,6 @@ public class ResponseDTO {
         this.joinDate = member.getJoinDate();
         this.lastAccessDate = member.getLastAccessDate();
         this.roles = member.getRoles();
+//        this.token = member.getToken();
     }
 }
