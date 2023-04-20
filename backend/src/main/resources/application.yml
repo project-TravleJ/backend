@@ -7,6 +7,7 @@ spring:
     url: jdbc:mysql://@mysql.team-greedy.com:3306/travelj?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: travelj
     password: travelj
+
 #  security:
 #    oauth2:
 #      client:
@@ -14,7 +15,7 @@ spring:
 #        clientSecret: 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
 
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

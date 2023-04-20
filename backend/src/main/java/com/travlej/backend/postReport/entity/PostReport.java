@@ -21,7 +21,7 @@ public class PostReport {
     @Column(name = "REPORT_TO_MEMBER")
     private String reportToMember;
     @Column(name = "REPORT_DATE")
-    private java.util.Date reportDate;
+    private String reportDate;
     @Column(name = "REPORT_REASON")
     private String reportReason;
     @Column(name = "REPORT_DETAILS")
@@ -33,7 +33,7 @@ public class PostReport {
 
     public PostReport() {}
 
-    public PostReport(int reportId, String reportWriter, String reportToMember, Date reportDate, String reportReason, String reportDetails, String reportManagement, int reportPostId) {
+    public PostReport(int reportId, String reportWriter, String reportToMember, String reportDate, String reportReason, String reportDetails, String reportManagement, int reportPostId) {
         this.reportId = reportId;
         this.reportWriter = reportWriter;
         this.reportToMember = reportToMember;
@@ -68,11 +68,11 @@ public class PostReport {
         this.reportToMember = reportToMember;
     }
 
-    public Date getReportDate() {
+    public String getReportDate() {
         return reportDate;
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(String reportDate) {
         this.reportDate = reportDate;
     }
 

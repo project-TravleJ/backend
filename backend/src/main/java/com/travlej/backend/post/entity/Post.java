@@ -1,8 +1,10 @@
 package com.travlej.backend.post.entity;
 
 import com.travlej.backend.course.entity.Course;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,19 +25,22 @@ public class Post {
     private String postTitle;
 
     @Column(name = "POST_DATE")
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     private java.util.Date postDate;
 
     @Column(name="WRITER")
     private String writer;
 
     @Column(name = "POST_START")
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     private java.util.Date postStart;
 
     @Column(name = "POST_END")
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     private java.util.Date postEnd;
 
-    @OneToMany(mappedBy = "post")
-    private List<Course> courseList;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Course> courseList = new ArrayList<>();
 
     @Column(name = "POST_CONTEXT")
     private String context;

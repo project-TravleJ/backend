@@ -1,5 +1,7 @@
 package com.travlej.backend.postrequest.request.service;
 
+import com.travlej.backend.post.dto.PostDTO;
+import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.postrequest.request.dto.RequestDTO;
 import com.travlej.backend.postrequest.request.entity.Request;
 import com.travlej.backend.postrequest.request.repository.RequestRepository;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.Writer;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +38,13 @@ public class RequestService {
         return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
     }
 
+    public List<RequestDTO> SearchByMultiple (RequestDTO requestDTO){
+
+        List<Request> requestList = requestRepository.findByWriterContainingAndTitleContainingAndRequestManagementContaining(requestDTO.getWriter(), requestDTO.getTitle(), requestDTO.getRequestManagement());
+
+        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
+}
+
     public RequestDTO findRequestByRequestId(int requestId){
 
         Request request = requestRepository.findById(requestId).get();
@@ -45,12 +55,13 @@ public class RequestService {
     @Transactional
     public RequestDTO registNewRequest(RequestDTO newRequest){
 
-
         //저장하는 메소드 Repo.save()
         Request result = requestRepository.save(modelMapper.map(newRequest, Request.class));
 
+        System.out.println(2);
         return modelMapper.map(result, RequestDTO.class);
     }
+
 
     @Transactional
     public RequestDTO updateRequest(int requestId, RequestDTO updateRequest) {
@@ -61,8 +72,8 @@ public class RequestService {
         // 입력받은 DTO를 통해 변경할 값들을 모두 추출함
         String requestManagement = updateRequest.getRequestManagement();
 
-        // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
-        if(!"".equals(requestManagement) && !request.getRequestManagement().equals(requestManagement)){
+        // update값이 비어있지 않다면, 갱신함
+        if(requestManagement != null && !requestManagement.isEmpty()){
             request.setRequestManagement(requestManagement);
         }
 

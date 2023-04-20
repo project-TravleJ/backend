@@ -1,10 +1,12 @@
 package com.travlej.backend.postReport.controller;
 
 import com.travlej.backend.common.ResponseDto;
+import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.postReport.dto.PostReportDTO;
 import com.travlej.backend.postReport.service.PostReportService;
 import com.travlej.backend.repository.PostReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,10 @@ public class PostReportController {
    @Autowired
    public PostReportController(PostReportService postReportService) { this.postReportService = postReportService; }
 
-   @GetMapping(value = "/list", produces = "application/json; charset=UTF-8")
-   @ResponseBody
-   public List<PostReportDTO> findPostReportList() {
+   @GetMapping(value = "/list")
+   public  ResponseEntity<ResponseDto> findPostReportList() {
 
-      return postReportService.findAllPostReport();
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "신고글 조회 성공", postReportService.findAllPostReport()));
    }
    @PostMapping("/reportPost")
    public ResponseEntity<ResponseDto> registPostReport(@RequestBody PostReportDTO postReportDTO){
@@ -51,6 +52,12 @@ public class PostReportController {
    public ResponseEntity<ResponseDto> deletePost(@PathVariable int reportId){
 
       return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 성공", postReportService.deletePostReport(reportId)));
+   }
+
+   @PostMapping("searchReport")
+   public ResponseEntity<ResponseDto> searchReport(@RequestBody PostReportDTO postReportDTO){
+
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
    }
       
 }

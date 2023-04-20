@@ -6,14 +6,16 @@ public class CourseDTO {
     private int idx;
     private int postId;
     private int attractionId;
+    private String courseMemo;
 
     public CourseDTO() {}
 
-    public CourseDTO(int courseId, int idx, int postId, int attractionId) {
+    public CourseDTO(int courseId, int idx, int postId, int attractionId, String courseMemo) {
         CourseId = courseId;
         this.idx = idx;
         this.postId = postId;
         this.attractionId = attractionId;
+        this.courseMemo = courseMemo;
     }
 
     public int getCourseId() {
@@ -48,6 +50,14 @@ public class CourseDTO {
         this.attractionId = attractionId;
     }
 
+    public String getCourseMemo(){
+        return courseMemo;
+    }
+
+    public void setCourseMemo(String courseMemo) {
+        this.courseMemo =courseMemo;
+    }
+
     @Override
     public String toString() {
         return "CourseDTO{" +
@@ -55,6 +65,7 @@ public class CourseDTO {
                 ", idx=" + idx +
                 ", postId=" + postId +
                 ", attractionId=" + attractionId +
+                ", courseMemo =" + courseMemo +
                 '}';
     }
 }

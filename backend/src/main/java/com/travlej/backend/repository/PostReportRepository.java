@@ -21,6 +21,10 @@ public interface PostReportRepository extends JpaRepository<PostReport, Integer>
             , nativeQuery = true)
         List<PostReport> findByWriter(@Param("reportWriter")String reportWriter);
 
+    List<PostReport> findByReportWriterContainingAndReportToMemberContainingAndReportDateContaining(
+            String reportWriter, String reportToMember, String Date);
+
+
 
 
 
