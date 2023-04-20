@@ -10,7 +10,6 @@ import javax.persistence.*;
         initialValue = 1,
         allocationSize = 1
 )
-
 public class Attraction {
 
     @Id

@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7789d201-3f17-4c5f-ad00-6321ad078840" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/entity/Attraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/entity/Attraction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/service/AttractionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/travlej/backend/attraction/service/AttractionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,6 +225,7 @@
       <workItem from="1681818737284" duration="2344000" />
       <workItem from="1681861909289" duration="14605000" />
       <workItem from="1681898600886" duration="944000" />
+      <workItem from="1681969121566" duration="2388000" />
     </task>
     <servers />
   </component>
