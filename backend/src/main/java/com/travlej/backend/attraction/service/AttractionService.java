@@ -83,7 +83,7 @@ public class AttractionService {
         if((0.0!=lat) && (attraction.getAttractionLat()!=lat)){
             attraction.setAttractionLat(lat);
         }
-        if((0.0!=lng) && (attraction.getAttractionLat()!=lng)) {
+        if((0.0!=lng) && (attraction.getAttractionLng()!=lng)) {
             attraction.setAttractionLng(lng);
         }
         if((null!=def) && !attraction.getAttractionDef().equals(def)) {
