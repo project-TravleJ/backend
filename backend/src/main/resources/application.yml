@@ -24,9 +24,6 @@ spring:
         ddl-auto: update
         '[format_sql]': true
 
-mybatis:
-  mapper-locations: mybatis/**/*.xml
-
 jwt:
   secret:
     key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=

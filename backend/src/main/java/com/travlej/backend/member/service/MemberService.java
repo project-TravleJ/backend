@@ -2,9 +2,7 @@ package com.travlej.backend.member.service;
 
 
 import com.travlej.backend.member.dto.MemberDTO;
-import com.travlej.backend.member.dto.SearchDTO;
 import com.travlej.backend.member.entity.Member;
-import com.travlej.backend.member.repository.MemberMapper;
 import com.travlej.backend.member.repository.MemberRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +17,11 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final ModelMapper modelMapper;
-    private final MemberMapper memberMapper;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository, ModelMapper modelMapper, MemberMapper memberMapper) {
+    public MemberService(MemberRepository memberRepository, ModelMapper modelMapper) {
         this.memberRepository = memberRepository;
         this.modelMapper = modelMapper;
-        this.memberMapper = memberMapper;
     }
 
     public List<MemberDTO> findMemberList() {
@@ -71,11 +67,6 @@ public class MemberService {
         Member result = memberRepository.save(member);
 
         return modelMapper.map(result, MemberDTO.class);
-    }
-
-
-    public List<SearchDTO> selectMemberByMultiple(SearchDTO searchDTO) {
-        return memberMapper.selectMemberByMultiple(searchDTO);
     }
 
 //    @Transactional
