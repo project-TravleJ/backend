@@ -4,8 +4,8 @@ public class SearchDTO {
 
     private int memberCode;
     private String memberNickname;
-//    private int status;
-//    private String grade;
+    private int status;
+    private String grade;
     private String joinDate;
     private String lastAccessDate;
 
@@ -14,8 +14,8 @@ public class SearchDTO {
     public SearchDTO(int memberCode, String memberNickname, int status, String grade, String joinDate, String lastAccessDate) {
         this.memberCode = memberCode;
         this.memberNickname = memberNickname;
-//        this.status = status;
-//        this.grade = grade;
+        this.status = status;
+        this.grade = grade;
         this.joinDate = joinDate;
         this.lastAccessDate = lastAccessDate;
     }
@@ -36,21 +36,21 @@ public class SearchDTO {
         this.memberNickname = memberNickname;
     }
 
-//    public int getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(int status) {
-//        this.status = status;
-//    }
-//
-//    public String getGrade() {
-//        return grade;
-//    }
-//
-//    public void setGrade(String grade) {
-//        this.grade = grade;
-//    }
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     public String getJoinDate() {
         return joinDate;
@@ -73,8 +73,8 @@ public class SearchDTO {
         return "SearchDTO{" +
                 "memberCode=" + memberCode +
                 ", memberNickname='" + memberNickname + '\'' +
-//                ", status=" + status +
-//                ", grade='" + grade + '\'' +
+                ", status=" + status +
+                ", grade='" + grade + '\'' +
                 ", joinDate='" + joinDate + '\'' +
                 ", lastAccessDate='" + lastAccessDate + '\'' +
                 '}';

@@ -44,7 +44,7 @@ public class MemberService {
 
     public List<MemberDTO> SearchByMultiple(MemberDTO memberDTO){
 
-        List<Member> memberList = memberRepository.findByMemberNicknameContainingAndJoinDateIsContainingAndLastAccessDateIsContaining(memberDTO.getMemberNickname(), memberDTO.getJoinDate(), memberDTO.getLastAccessDate());
+        List<Member> memberList = memberRepository.findByMemberNicknameContainingAndStatusContainingAndGradeContainingAndJoinDateContainingAndLastAccessDateContaining(memberDTO.getMemberNickname(), memberDTO.getStatus(), memberDTO.getGrade(), memberDTO.getJoinDate(), memberDTO.getLastAccessDate());
 
         return memberList.stream().map(member -> modelMapper.map(member, MemberDTO.class)).collect(Collectors.toList());
     }
@@ -54,7 +54,7 @@ public class MemberService {
 
         Member member = memberRepository.findById(memberCode).get();
 
-        int status = memberDTO.getStatus();
+        String status = memberDTO.getStatus();
         String grade = memberDTO.getGrade();
 
         System.out.println("memberDTO: "+ memberDTO);

@@ -39,11 +39,11 @@ public class MemberController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회원 상세 조회 성공!", memberService.findMemberByCode(memberCode)));
     }
 
-//    @PostMapping ("/members/searchMultiple")
-//    public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody MemberDTO memberDTO){
-//
-//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공!", memberService.SearchByMultiple(memberDTO)));
-//    }
+    @PostMapping ("/members/searchMulti")
+    public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody MemberDTO memberDTO){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공!", memberService.SearchByMultiple(memberDTO)));
+    }
 
     @PutMapping("/members/{memberCode}")
     public ResponseEntity<ResponseDto> updateMemberByCode(@PathVariable int memberCode, @RequestBody MemberDTO memberDTO) {

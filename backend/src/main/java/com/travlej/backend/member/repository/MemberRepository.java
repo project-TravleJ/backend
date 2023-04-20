@@ -28,7 +28,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
             , nativeQuery = true)
     List<Member> findByMemberNickname(@Param("memberNickname")String memberNickname, @Param("joinDate")String joinDate, @Param("lastAccessDate")String lastAccessDate);
 
-    List<Member> findByMemberNicknameContainingAndJoinDateIsContainingAndLastAccessDateIsContaining(String memberNickname, String joinDate, String lastAccessDate);
+    List<Member> findByMemberNicknameContainingAndStatusContainingAndGradeContainingAndJoinDateContainingAndLastAccessDateContaining(String memberNickname, String status, String grade, String joinDate, String lastAccessDate);
 
 //    @Query(value = "SELECT A.MEMBER_CODE, A.MEMBER_ID, A.MEMBER_NICKNAME, A.MEMBER_PWD, A.STATUS, A.GRADE, A.JOIN_DATE, A.lAST_ACCESS_DATE FROM MEMBER A ORDER BY A.MEMBER_CODE ASC",
 //            nativeQuery = true)

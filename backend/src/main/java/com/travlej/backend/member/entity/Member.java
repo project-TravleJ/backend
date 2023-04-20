@@ -47,7 +47,7 @@ public class Member {
 
     @Column(name = "STATUS")
 //    @ColumnDefault("0")
-    private int status;
+    private String status;
 
     @Column(name = "GRADE")
 //    @ColumnDefault("일반")
