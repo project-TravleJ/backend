@@ -19,7 +19,7 @@ public class ResponseDTO {
     private int memberCode;
     private String memberId;
     private String memberNickname;
-    private int status;
+    private String status;
     private String grade;
     private String joinDate;
     private String lastAccessDate;

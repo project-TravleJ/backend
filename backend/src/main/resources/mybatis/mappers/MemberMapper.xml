@@ -6,34 +6,34 @@
     <resultMap id="memberResultMap" type="com.travlej.backend.member.dto.SearchDTO">
         <id property="memberCode" column="MEMBER_CODE"/>
         <result property="memberNickname" column="MEMBER_NICKNAME"/>
-<!--        <result property="status" column="STATUS"/>-->
-<!--        <result property="grade" column="GRADE"/>-->
+        <!--        <result property="status" column="STATUS"/>-->
+        <!--        <result property="grade" column="GRADE"/>-->
         <result property="joinDate" column="JOIN_DATE"/>
         <result property="lastAccessDate" column="LAST_ACCESS_DATE"/>
     </resultMap>
 
     <select id="selectMemberByMultiple" resultMap="memberResultMap">
         SELECT
-               *
-          FROM MEMBER
+        *
+        FROM MEMBER
         <trim prefix="WHERE" prefixOverrides="AND|OR">
-        <choose>
-            <when test="memberNickname != null">
-                AND MEMBER_NICKNAME like #{memberNickname}
-            </when>
-<!--            <when test="status != null">-->
-<!--                AND status like #{status}-->
-<!--            </when>-->
-<!--            <when test="grade != null">-->
-<!--                AND grade like #{grade}-->
-<!--            </when>-->
-            <when test="joinDate != null">
-                AND JOIN_DATE like #{joinDate}
-            </when>
-            <when test="lastAccessDate != null">
-                AND LAST_ACCESS_DATE like #{lastAccessDate}
-            </when>
-        </choose>
+            <choose>
+                <when test="memberNickname != null">
+                    AND MEMBER_NICKNAME like #{memberNickname}
+                </when>
+                <!--            <when test="status != null">-->
+                <!--                AND status like #{status}-->
+                <!--            </when>-->
+                <!--            <when test="grade != null">-->
+                <!--                AND grade like #{grade}-->
+                <!--            </when>-->
+                <when test="joinDate != null">
+                    AND JOIN_DATE like #{joinDate}
+                </when>
+                <when test="lastAccessDate != null">
+                    AND LAST_ACCESS_DATE like #{lastAccessDate}
+                </when>
+            </choose>
         </trim>
     </select>
 </mapper>
