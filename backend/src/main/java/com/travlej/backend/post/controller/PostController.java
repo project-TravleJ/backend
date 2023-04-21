@@ -50,25 +50,25 @@ public class PostController {
     @PostMapping("/posts")
     public ResponseEntity<ResponseDto> registPost(@RequestBody PostDTO postDto){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 등록 성공", postService.registNewPost(postDto)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 등록 성공", postService.registNewPost(postDto)));
     }
 
     @PutMapping("/posts/{postId}")
     public ResponseEntity<ResponseDto> updatePost(@PathVariable int postId, @RequestBody PostDTO postDTO){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 수정 성공", postService.updatePost(postId, postDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 수정 성공", postService.updatePost(postId, postDTO)));
     }
 
     @DeleteMapping("/posts/{postId}")
     public ResponseEntity<ResponseDto> deletePost(@PathVariable int postId){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 완료", postService.deletePost(postId)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "게시글 삭제 완료", postService.deletePost(postId)));
     }
 
     @PostMapping("/postswithcourse")
     public ResponseEntity<ResponseDto> regisePostWithCourse(@RequestBody PostDTO postDTO){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 등록 완료", postService.registNewPostWithCourse(postDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 등록 완료", postService.registNewPostWithCourse(postDTO)));
     }
 
     @GetMapping("/posts/detailSearch")

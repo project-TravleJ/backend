@@ -32,7 +32,7 @@ public class PostReportController {
    @PostMapping("/reportPost")
    public ResponseEntity<ResponseDto> registPostReport(@RequestBody PostReportDTO postReportDTO){
 
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "신고글 등록 성공", postReportService.registNewPost(postReportDTO)));
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "신고글 등록 성공", postReportService.registNewPost(postReportDTO)));
 
    }
 
@@ -45,19 +45,19 @@ public class PostReportController {
    @PutMapping("/{reportId}")
    public ResponseEntity<ResponseDto> updatePostReport(@PathVariable int reportId, @RequestBody PostReportDTO postReportDTO){
       
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 수정 성공", postReportService.updatePostReport(reportId, postReportDTO)));
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 수정 성공", postReportService.updatePostReport(reportId, postReportDTO)));
    }
 
    @DeleteMapping("{reportId}")
    public ResponseEntity<ResponseDto> deletePost(@PathVariable int reportId){
 
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 성공", postReportService.deletePostReport(reportId)));
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "게시글 삭제 성공", postReportService.deletePostReport(reportId)));
    }
 
    @PostMapping("searchReport")
    public ResponseEntity<ResponseDto> searchReport(@RequestBody PostReportDTO postReportDTO){
 
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
    }
       
 }

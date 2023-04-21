@@ -35,13 +35,13 @@ public class MemberController {
     @PostMapping ("/members/searchMulti")
     public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody MemberDTO memberDTO){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "상세 검색 성공!", memberService.SearchByMultiple(memberDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "상세 검색 성공!", memberService.SearchByMultiple(memberDTO)));
     }
 
     @PutMapping("/members/{memberCode}")
     public ResponseEntity<ResponseDto> updateMemberByCode(@PathVariable int memberCode, @RequestBody MemberDTO memberDTO) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회원 정보 수정 성공!", memberService.updateMember(memberCode, memberDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원 정보 수정 성공!", memberService.updateMember(memberCode, memberDTO)));
     }
 
 }

@@ -1,7 +1,11 @@
 package com.travlej.backend.postReport.entity;
 
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity(name = "PostReport")
@@ -14,12 +18,17 @@ import java.util.Date;
 )
 public class PostReport {
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "REPORT_POST_GENERATOR"
+    )
     @Column(name = "REPORT_ID")
     private int reportId;
     @Column(name = "REPORT_WRITER")
     private String reportWriter;
     @Column(name = "REPORT_TO_MEMBER")
     private String reportToMember;
+    @CreatedDate
     @Column(name = "REPORT_DATE")
     private String reportDate;
     @Column(name = "REPORT_REASON")
@@ -120,6 +129,11 @@ public class PostReport {
                 ", reportManagement='" + reportManagement + '\'' +
                 ", reportPostId=" + reportPostId +
                 '}';
+    }
+
+    @PrePersist
+    public void onPrePersist(){
+        this.reportDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }
 
