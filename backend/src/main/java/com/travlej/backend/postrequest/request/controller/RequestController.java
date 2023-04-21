@@ -40,7 +40,7 @@ public class RequestController {
             return ResponseEntity.badRequest().body(new ResponseDto(HttpStatus.BAD_REQUEST, "RequestDTO가 null입니다.", null));
         }
         System.out.println(2);
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 등록 성공", requestService.registNewRequest(requestDto)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 등록 성공", requestService.registNewRequest(requestDto)));
     }
 
 
@@ -48,19 +48,19 @@ public class RequestController {
     @PutMapping("/{requestId}")
     public ResponseEntity<ResponseDto> updateRequest(@PathVariable int requestId, @RequestBody RequestDTO requestDTO){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 수정 성공", requestService.updateRequest(requestId, requestDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 수정 성공", requestService.updateRequest(requestId, requestDTO)));
     }
 
     @DeleteMapping("/{requestId}")
     public ResponseEntity<ResponseDto> deleteRequest(@PathVariable int requestId){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 삭제 완료", requestService.deleteRequest(requestId)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "게시글 삭제 완료", requestService.deleteRequest(requestId)));
     }
 
     @PostMapping("/search")
     public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody(required = false) RequestDTO requestDTO){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
     }
 
 }

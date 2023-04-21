@@ -18,13 +18,13 @@ public class AuthController {
     @PostMapping(value = "/login")
     public ResponseEntity<ResponseDto> signin(@RequestBody RequestDTO request) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공!", memberService.login(request)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "로그인 성공!", memberService.login(request)));
     }
 
     @PostMapping(value = "/register")
     public ResponseEntity<ResponseDto> signup(@RequestBody RequestDTO request) throws Exception {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회원가입 성공!", memberService.register(request)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공!", memberService.register(request)));
     }
 
     @GetMapping("/user/members")
