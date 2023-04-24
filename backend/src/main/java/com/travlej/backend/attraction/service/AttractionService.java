@@ -97,6 +97,13 @@ public class AttractionService {
 
         return modelMapper.map(result, AttractionDTO.class);
     }
+
+    public List<AttractionDTO> findAttractionByTitle(String name) {
+
+        List<Attraction> resultList = attractionRepository.findByAttractionNameContaining(name);
+
+        return resultList.stream().map(result -> modelMapper.map(result, AttractionDTO.class)).collect(Collectors.toList());
+    }
 }
 
 

@@ -26,6 +26,12 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+    @GetMapping("/courses")
+    public ResponseEntity<ResponseDto> selectAllCourses() {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "코스 전체 조회 완료", courseService.findCourses()));
+    }
+
     @GetMapping("/posts/{postId}/courses")
     public ResponseEntity<ResponseDto> selectCourseByPostId(@PathVariable int postId){
 

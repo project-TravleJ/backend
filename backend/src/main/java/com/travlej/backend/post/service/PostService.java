@@ -128,16 +128,35 @@ public class PostService {
     @Transactional
     public PostDTO registNewPostWithCourse(PostDTO postDTO) {
 
-        Post post = modelMapper.map(postDTO, Post.class);
-
         List<CourseDTO> courseList = postDTO.getCourseList();
+
+        postDTO.setCourseList(null);
+
+        Post post = modelMapper.map(postDTO, Post.class);
+        post.setPostDate(new Date());
+        Post newPost = postRepository.save(post);
+
         for(CourseDTO courseDTO: courseList){
-            Course course = modelMapper.map(courseDTO, Course.class);
-            course.setPost(post);
+            courseDTO.setPostId(newPost.getPostId());
         }
 
-        return modelMapper.map(post, PostDTO.class);
+        PostDTO result = modelMapper.map(post, PostDTO.class);
+
+        result.setCourseList(courseList);
+
+        return result;
     }
+
+//    @Transactional
+//    public PostDTO registNewPost(PostDTO newPost){
+//
+//        //저장하는 메소드 Repo.save()
+//        Post result = postRepository.save(modelMapper.map(newPost, Post.class));
+//
+//        result.setPostDate(new java.util.Date());
+//
+//        return modelMapper.map(result, PostDTO.class);
+//    }
 
     public List<PostDTO> selectDetailSearch(PostDTO postDTO) {
 

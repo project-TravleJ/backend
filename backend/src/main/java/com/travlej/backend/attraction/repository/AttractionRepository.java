@@ -24,6 +24,8 @@ import java.util.List;
 public interface AttractionRepository extends JpaRepository<Attraction, Integer> {
 
 //    List<Attraction> findByAttractionNameContaining(String attractionName);
+
+    List<Attraction> findByAttractionNameContaining(String attractionName);
 }
 
 //public interface AttractionRepository extends JpaRepository<Attraction, Long> {}
