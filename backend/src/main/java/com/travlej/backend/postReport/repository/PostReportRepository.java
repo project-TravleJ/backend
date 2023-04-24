@@ -1,6 +1,9 @@
-package com.travlej.backend.repository;
+package com.travlej.backend.postReport.repository;
 
 import com.travlej.backend.postReport.entity.PostReport;
+import com.travlej.backend.postrequest.request.entity.Request;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,8 +24,10 @@ public interface PostReportRepository extends JpaRepository<PostReport, Integer>
             , nativeQuery = true)
         List<PostReport> findByWriter(@Param("reportWriter")String reportWriter);
 
-    List<PostReport> findByReportWriterContainingAndReportToMemberContainingAndReportDateContaining(
-            String reportWriter, String reportToMember, String Date);
+    Page<PostReport> findByReportWriterContainingAndReportToMemberContainingAndReportDateContainingAndReportManagementContaining(
+            String reportWriter, String reportToMember, String Date, String reportManagement, Pageable pageable);
+
+
 
 
 
