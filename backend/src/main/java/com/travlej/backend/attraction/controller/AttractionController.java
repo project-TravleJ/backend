@@ -64,6 +64,12 @@ public class AttractionController {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "어트랙션 삭제 성공", attractionService.deleteAttraction(attractionId)));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<ResponseDto> searchByTitle(@RequestParam String value){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "어트랙션 조회 성공", attractionService.findAttractionByTitle(value)));
+    }
 }
 
 //@RestController

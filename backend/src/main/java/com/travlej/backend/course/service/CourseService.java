@@ -71,4 +71,11 @@ public class CourseService {
 
         return null;
     }
+
+    public List<CourseDTO> findCourses() {
+
+        List<Course> result = courseRepository.findAll();
+
+        return result.stream().map(course -> modelMapper.map(course, CourseDTO.class)).collect(Collectors.toList());
+    }
 }
