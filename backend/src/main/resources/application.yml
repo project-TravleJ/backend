@@ -7,23 +7,26 @@ spring:
     url: jdbc:mysql://@mysql.team-greedy.com:3306/travelj?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: travelj
     password: travelj
-
-#  security:
-#    oauth2:
-#      client:
-#        clientId: 30823325928-s78h21h30dql6640ufj13jt5lhmov706.apps.googleusercontent.com
-#        clientSecret: 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
+    hikari:
+      auto-commit: false
+  main:
+    allow-circular-references: true
 
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
-        ddl-auto: update
         '[format_sql]': true
+        hbm2ddl:
+          auto: update
 
 jwt:
-  secret:
-    key: 7ZWt7ZW0OTntmZTsnbTtjIXtlZzqta3snYTrhIjrqLjshLjqs4TroZzrgpjslYTqsIDsnpDtm4zrpa3tlZzqsJzrsJzsnpDrpbzrp4zrk6TslrTqsIDsnpA=
+  secret: asdfjp298pafo1320efqw0udvnh0er0h412r08byfdq9dsvh02143908hfeqwn80fdqs0nfdqs0n412013rq0nqefn08dfas0das730732g86923kjefho43y592y095r2wofhw92yt832y5r920woqhjfwoty28rt02ty230hwot92ty0923752rywohr9wyf823y8329yt0wyf9stgf932y20gfy9w8yh28it2y3y239836y25720hw8fy83r49y23y8
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

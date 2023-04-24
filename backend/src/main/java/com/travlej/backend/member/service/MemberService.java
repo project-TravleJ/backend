@@ -31,7 +31,7 @@ public class MemberService {
         return memberList.stream().map(member -> modelMapper.map(member, MemberDTO.class)).collect(Collectors.toList());
     }
 
-    public MemberDTO findMemberByCode(int memberCode) {
+    public MemberDTO findMemberByCode(Long memberCode) {
 
         Member member = memberRepository.findById(memberCode).get();
 
@@ -46,7 +46,7 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberDTO updateMember(int memberCode, MemberDTO memberDTO) {
+    public MemberDTO updateMember(Long memberCode, MemberDTO memberDTO) {
 
         Member member = memberRepository.findById(memberCode).get();
 
@@ -69,12 +69,21 @@ public class MemberService {
         return modelMapper.map(result, MemberDTO.class);
     }
 
-//    @Transactional
-//    public MemberDTO updatePwd(int memberCode, MemberDTO memberDTO) {
-//        Member member = memberRepository.findById(memberCode).get();
-//
-//        String memberPwd = memberDTO.getMemberPwd();
-//
-//        if (!"".equals(memberPwd) && memberPwd.equals(member.getMemberPwd()))
-//    }
+    public MemberDTO findBySocialId(String socialLogin, long socialId) {
+        Member foundMember = memberRepository.findBySocialId(socialLogin, socialId);
+
+        if (foundMember == null) {
+            return null;
+        } else {
+            return modelMapper.map(foundMember, MemberDTO.class);
+        }
+    }
+
+    @Transactional
+    public long registNewUser(MemberDTO newMember) {
+
+        newMember.setMemberNickname("새로운회원" + (Math.random() * 100 + 1));
+
+        return memberRepository.save(modelMapper.map(newMember, Member.class)).getMemberCode();
+    }
 }
