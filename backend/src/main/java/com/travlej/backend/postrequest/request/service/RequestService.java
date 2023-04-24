@@ -1,7 +1,5 @@
 package com.travlej.backend.postrequest.request.service;
 
-import com.travlej.backend.post.dto.PostDTO;
-import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.postrequest.request.dto.RequestDTO;
 import com.travlej.backend.postrequest.request.entity.Request;
 import com.travlej.backend.postrequest.request.repository.RequestRepository;
@@ -9,6 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,19 +33,44 @@ public class RequestService {
         this.modelMapper = modelMapper;
     }
 
-    public List<RequestDTO> findRequestList(){
+    public Page<RequestDTO> findRequestList(Pageable pageable){
 
-        List<Request> requestList = requestRepository.findAll();
+        //offset, limit, sort 순으로 값을 전달함
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0: pageable.getPageNumber() - 1,
+                pageable.getPageSize(),
+                Sort.by("requestId").ascending());
 
-        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
+//        return requestRepository.findSimpleRequestList(pageable);
+          return requestRepository.findAll(pageable).map(request -> modelMapper.map(request, RequestDTO.class));
+//        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
     }
 
-    public List<RequestDTO> SearchByMultiple (RequestDTO requestDTO){
 
-        List<Request> requestList = requestRepository.findByWriterContainingAndTitleContainingAndRequestManagementContaining(requestDTO.getWriter(), requestDTO.getTitle(), requestDTO.getRequestManagement());
+    public Page<RequestDTO> SearchByMultiple (RequestDTO requestDTO, Pageable pageable){
 
-        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
-}
+        Page<Request> requestPage = requestRepository.findByWriterContainingAndTitleContainingAndRequestManagementContaining(
+                requestDTO.getWriter(), requestDTO.getTitle(), requestDTO.getRequestManagement(), pageable);
+
+        return requestPage.map(request -> modelMapper.map(request, RequestDTO.class));
+    }
+//        Page<Request> requestList = requestRepository.findByWriterContainingAndTitleContainingAndRequestManagementContaining(requestDTO.getWriter(), requestDTO.getTitle(), requestDTO.getRequestManagement(), pageable);
+//
+//        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0: pageable.getPageNumber() - 1,
+//                pageable.getPageSize(),
+//                Sort.by("requestId").descending());
+//
+//        return requestRepository.findAll(pageable).map(request -> modelMapper.map(request, RequestDTO.class));
+////        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
+//    }
+
+
+//    public List<RequestDTO> SearchByMultiple (RequestDTO requestDTO){
+//
+//        List<Request> requestList = requestRepository.findByWriterContainingAndTitleContainingAndRequestManagementContaining(requestDTO.getWriter(), requestDTO.getTitle(), requestDTO.getRequestManagement());
+//
+//
+//        return requestList.stream().map(request -> modelMapper.map(request, RequestDTO.class)).collect(Collectors.toList());
+//}
 
     public RequestDTO findRequestByRequestId(int requestId){
 

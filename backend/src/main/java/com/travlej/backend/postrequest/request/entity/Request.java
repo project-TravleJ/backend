@@ -1,16 +1,23 @@
 package com.travlej.backend.postrequest.request.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "Request")
 @Table(name = "REQUEST")
+@SequenceGenerator(
+        name = "REQUEST_SEQ_GENERATOR",
+        sequenceName = "SEQ_REQUEST_ID",
+        initialValue = 1,
+        allocationSize = 1
+)
 public class Request {
 
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "REQUEST_SEQ_GENERATOR"
+    )
     @Column(name = "REQUEST_ID")
     private int requestId;
 
