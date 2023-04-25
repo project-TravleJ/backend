@@ -1,5 +1,6 @@
 package com.travlej.backend.member.entity;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -61,11 +62,11 @@ public class Member {
     private String gender;
 
     @Column(name = "STATUS")
-//    @ColumnDefault("0")
+    @ColumnDefault("정상")
     private String status;
 
     @Column(name = "GRADE")
-//    @ColumnDefault("일반")
+    @ColumnDefault("일반")
     private String grade;
 
     @CreatedDate

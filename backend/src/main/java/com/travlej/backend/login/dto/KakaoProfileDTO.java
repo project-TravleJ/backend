@@ -6,8 +6,7 @@ public class KakaoProfileDTO {
     private String connected_at;
     private KakaoAccount kakao_account;
 
-    public KakaoProfileDTO() {
-    }
+    public KakaoProfileDTO() {}
 
     public KakaoProfileDTO(long id, String connected_at, KakaoAccount kakao_account) {
         this.id = id;
@@ -35,13 +34,14 @@ public class KakaoProfileDTO {
         return kakao_account;
     }
 
-    public void setKakao_account(KakaoAccount kakao_account) {
+    public void setKakao_account(
+            KakaoAccount kakao_account) {
         this.kakao_account = kakao_account;
     }
 
     @Override
     public String toString() {
-        return "KakaoprofileDTO{" +
+        return "KakaoProfileDTO{" +
                 "id=" + id +
                 ", connected_at='" + connected_at + '\'' +
                 ", kakao_account=" + kakao_account +
@@ -49,31 +49,23 @@ public class KakaoProfileDTO {
     }
 
     public class KakaoAccount {
+
         private boolean has_email;
         private boolean email_needs_agreement;
         private boolean is_email_valid;
         private boolean is_email_verified;
         private String email;
-        private boolean has_gender;
-        private boolean gender_needs_agreement;
-        private String gender;
 
-        public KakaoAccount() {
-        }
+        public KakaoAccount() {}
 
         public KakaoAccount(boolean has_email, boolean email_needs_agreement,
                             boolean is_email_valid,
-                            boolean is_email_verified, String email, boolean has_gender,
-                            boolean gender_needs_agreement,
-                            String gender) {
+                            boolean is_email_verified, String email) {
             this.has_email = has_email;
             this.email_needs_agreement = email_needs_agreement;
             this.is_email_valid = is_email_valid;
             this.is_email_verified = is_email_verified;
             this.email = email;
-            this.has_gender = has_gender;
-            this.gender_needs_agreement = gender_needs_agreement;
-            this.gender = gender;
         }
 
         public boolean isHas_email() {
@@ -116,30 +108,6 @@ public class KakaoProfileDTO {
             this.email = email;
         }
 
-        public boolean isHas_gender() {
-            return has_gender;
-        }
-
-        public void setHas_gender(boolean has_gender) {
-            this.has_gender = has_gender;
-        }
-
-        public boolean isGender_needs_agreement() {
-            return gender_needs_agreement;
-        }
-
-        public void setGender_needs_agreement(boolean gender_needs_agreement) {
-            this.gender_needs_agreement = gender_needs_agreement;
-        }
-
-        public String getGender() {
-            return gender;
-        }
-
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-
         @Override
         public String toString() {
             return "KakaoAccount{" +
@@ -148,9 +116,6 @@ public class KakaoProfileDTO {
                     ", is_email_valid=" + is_email_valid +
                     ", is_email_verified=" + is_email_verified +
                     ", email='" + email + '\'' +
-                    ", has_gender=" + has_gender +
-                    ", gender_needs_agreement=" + gender_needs_agreement +
-                    ", gender='" + gender + '\'' +
                     '}';
         }
     }
