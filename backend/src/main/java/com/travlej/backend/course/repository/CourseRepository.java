@@ -8,4 +8,6 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
     List<Course> findByPost_PostId(int postId);
+
+    void deleteByPost_PostId(int postId);
 }
