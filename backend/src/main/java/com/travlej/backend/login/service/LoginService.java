@@ -16,6 +16,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -43,14 +44,15 @@ public class LoginService {
     public OauthTokenDTO getAccessToken(String code) {
 
         RestTemplate rt = new RestTemplate();
+        rt.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client", "a3e1cecfee71f9aaf00350bd99c70691");
-        params.add("redirect_url", "http://localhost:3000/oauth");
+        params.add("client_id", "33675c8bccf3c9affdd25308b1d5454a");
+        params.add("redirect_uri", "http://localhost:3000/oauth");
         params.add("code", code);
 
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
@@ -80,11 +82,12 @@ public class LoginService {
 
     public KakaoProfileDTO findKakaoProfile(String accessToken) {
         RestTemplate rt = new RestTemplate();
+		rt.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
         System.out.println("testtttttttttttttttttttttttttttttttttt");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer" + accessToken);
+        headers.add("Authorization", "Bearer " + accessToken);
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest =
@@ -97,7 +100,7 @@ public class LoginService {
                 String.class
         );
 
-        System.out.println(kakaoProfileResponse.getBody());
+        System.out.println("kakaoProfileResponse : " + kakaoProfileResponse.getBody());
 
         KakaoProfileDTO kakaoProfileDTO = new KakaoProfileDTO();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -133,9 +136,9 @@ public class LoginService {
             newMember.setAccessTokenExpireDate(oauthToken.getExpires_in() + System.currentTimeMillis());
             newMember.setImageSource("https://api.dicebear.com/6.x/thumbs/svg?seed=" + newMember.getEmail().split("@")[0]);
 
-            if (kakaoProfileDTO.getKakao_account().getGender() != null) {
-                newMember.setGender(kakaoProfileDTO.getKakao_account().getGender());
-            }
+//            if (kakaoProfileDTO.getKakao_account().getGender() != null) {
+//                newMember.setGender(kakaoProfileDTO.getKakao_account().getGender());
+//            }
 
             memberService.registNewUser(newMember);
         }
@@ -163,13 +166,14 @@ public class LoginService {
     private RenewTokenDTO renewKakaoToken(MemberDTO foundmember) {
 
         RestTemplate rt = new RestTemplate();
+        rt.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "refresh_token");
-        params.add("client_id", "a3e1cecfee71f9aaf00350bd99c70691");
+        params.add("client_id", "33675c8bccf3c9affdd25308b1d5454a");
         params.add("refresh_token", foundmember.getRefreshToken());
 
         System.out.println("refresh" + foundmember.getRefreshToken());
@@ -178,7 +182,7 @@ public class LoginService {
                 new HttpEntity<>(params, headers);
 
         ResponseEntity<String> renewTokenResponse = rt.exchange(
-                "https://kauth.kako.com/oauth/token",
+                "https://kauth.kakao.com/oauth/token",
                 HttpMethod.POST,
                 kakaoTokenRequest,
                 String.class
