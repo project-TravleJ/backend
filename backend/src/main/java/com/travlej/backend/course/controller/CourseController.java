@@ -44,6 +44,10 @@ public class CourseController {
 //        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "코스 등록 성공", courseService.registNewCourseList(postId, courseDTOList)));
 //    }
 
+    @DeleteMapping("/posts/{postId}/courses")
+    public ResponseEntity<ResponseDto> deleteCourseByPostId(@PathVariable int postId){
 
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "코스 삭제 완료", courseService.deleteCourses(postId)));
+    }
 
 }
