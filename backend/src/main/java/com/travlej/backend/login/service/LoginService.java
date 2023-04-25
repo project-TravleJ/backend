@@ -82,7 +82,7 @@ public class LoginService {
 
     public KakaoProfileDTO findKakaoProfile(String accessToken) {
         RestTemplate rt = new RestTemplate();
-		rt.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+        rt.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
         System.out.println("testtttttttttttttttttttttttttttttttttt");
 

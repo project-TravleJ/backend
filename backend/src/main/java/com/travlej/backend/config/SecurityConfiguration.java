@@ -3,6 +3,9 @@ package com.travlej.backend.config;
 //import com.travlej.backend.jwt.JwtAccessDeniedHandler;
 //import com.travlej.backend.jwt.JwtAuthenticationEntryPoint;
 //import com.travlej.backend.jwt.TokenProvider;
+import com.travlej.backend.jwt.JwtAccessDeniedHandler;
+import com.travlej.backend.jwt.JwtAuthenticationEntryPoint;
+import com.travlej.backend.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -25,17 +28,17 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration {
 
-//    private final TokenProvider tokenProvider;
-//    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-//    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
-//
-//    public SecurityConfiguration(TokenProvider tokenProvider,
-//                                 JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint
-//            , JwtAccessDeniedHandler jwtAccessDeniedHandler) {
-//        this.tokenProvider = tokenProvider;
-//        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-//        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
-//    }
+    private final TokenProvider tokenProvider;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+    public SecurityConfiguration(TokenProvider tokenProvider,
+                                 JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint
+            , JwtAccessDeniedHandler jwtAccessDeniedHandler) {
+        this.tokenProvider = tokenProvider;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
+    }
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -84,7 +87,7 @@ public class SecurityConfiguration {
                 .httpBasic().disable()
                 .cors()
                 .and();
-                // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
+        // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
 //                .apply(new JwtSecurityConfiguration(tokenProvider));
 
         return http.build();
