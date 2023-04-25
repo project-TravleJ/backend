@@ -1,18 +1,24 @@
 package com.travlej.backend.postReport.controller;
 
 import com.travlej.backend.common.ResponseDto;
-import com.travlej.backend.post.entity.Post;
+import com.travlej.backend.common.paging.Pagenation;
+import com.travlej.backend.common.paging.PagingButtonInfo;
 import com.travlej.backend.postReport.dto.PostReportDTO;
 import com.travlej.backend.postReport.service.PostReportService;
-import com.travlej.backend.repository.PostReportRepository;
+import com.travlej.backend.postReport.repository.PostReportRepository;
+import com.travlej.backend.postrequest.request.dto.RequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/api/v1/reports")
@@ -24,11 +30,23 @@ public class PostReportController {
    @Autowired
    public PostReportController(PostReportService postReportService) { this.postReportService = postReportService; }
 
-   @GetMapping(value = "/list")
-   public  ResponseEntity<ResponseDto> findPostReportList() {
+   @GetMapping(value = "/")
+   public  ResponseEntity<ResponseDto> findPostReportList(ModelAndView mv, @PageableDefault Pageable pageable) {
 
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "신고글 조회 성공", postReportService.findAllPostReport()));
+      Page<PostReportDTO> reportList = postReportService.findAllPostReport(pageable);
+
+      PagingButtonInfo paging = Pagenation.getPagingButtonInfo(reportList);
+
+      Map<String, Object> responseMap = new HashMap<>();
+      responseMap.put("reportList", reportList);
+      responseMap.put("paging",paging);
+
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", responseMap));
+//      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "신고글 조회 성공", postReportService.findAllPostReport()));
    }
+
+
+
    @PostMapping("/reportPost")
    public ResponseEntity<ResponseDto> registPostReport(@RequestBody PostReportDTO postReportDTO){
 
@@ -55,9 +73,18 @@ public class PostReportController {
    }
 
    @PostMapping("searchReport")
-   public ResponseEntity<ResponseDto> searchReport(@RequestBody PostReportDTO postReportDTO){
+   public ResponseEntity<ResponseDto> searchReport(ModelAndView mv, @PageableDefault Pageable pageable, @RequestBody PostReportDTO postReportDTO){
 
-      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
+      Page<PostReportDTO> SearchByReportMultiple = postReportService.SearchByReportMultiple(postReportDTO, pageable);
+
+      PagingButtonInfo paging = Pagenation.getPagingButtonInfo(SearchByReportMultiple);
+
+      Map<String, Object> responseMap = new HashMap<>();
+      responseMap.put("SearchByReportMultiple", SearchByReportMultiple);
+      responseMap.put("paging",paging);
+
+      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "검색 조회", responseMap));
+//      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "상세 검색 성공", postReportService.detailSearchReport(postReportDTO)));
    }
       
 }

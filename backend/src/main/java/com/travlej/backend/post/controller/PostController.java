@@ -1,15 +1,25 @@
 package com.travlej.backend.post.controller;
 
 import com.travlej.backend.common.ResponseDto;
+import com.travlej.backend.common.paging.Pagenation;
+import com.travlej.backend.common.paging.PagingButtonInfo;
 import com.travlej.backend.post.dto.PostCourseDTO;
 import com.travlej.backend.post.dto.PostDTO;
 import com.travlej.backend.post.service.PostService;
+import com.travlej.backend.postReport.dto.PostReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/api/v1")
@@ -24,9 +34,18 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    public ResponseEntity<ResponseDto> selectPostAll(){
+    public ResponseEntity<ResponseDto> selectPostAll(ModelAndView mv, @PageableDefault Pageable pageable){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", postService.findPostList()));
+            Page<PostDTO> postList = postService.findPostList(pageable);
+
+            PagingButtonInfo paging = Pagenation.getPagingButtonInfo(postList);
+
+            Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("postList", postList);
+            responseMap.put("paging",paging);
+
+            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", responseMap));
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", postService.findPostList()));
     }
 
 
@@ -70,10 +89,17 @@ public class PostController {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "게시글 등록 완료", postService.registNewPostWithCourse(postDTO)));
     }
+//
+//    @PostMapping("/posts/detailSearch")
+//    public ResponseEntity<ResponseDto> selectDetailSearch(@RequestBody PostCourseDTO postCourseDTO){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 상세검색조회 완료", postService.selectDetailSearch(postCourseDTO)));
+//    }
 
-    @GetMapping("/posts/detailSearch")
-    public ResponseEntity<ResponseDto> selectDetailSearch(@RequestBody PostDTO postDTO){
+    @PostMapping("/posts/titleSearch")
+    public ResponseEntity<ResponseDto> selectTitleSearch(@RequestBody String title){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 상세조회 완료", postService.selectDetailSearch(postDTO)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 제목검색조회 완료", postService.findPostByPostTitle(title)));
     }
+
 }

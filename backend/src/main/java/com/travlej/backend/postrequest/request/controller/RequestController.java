@@ -104,7 +104,7 @@ public class RequestController {
         responseMap.put("searchByMultiple", searchByMultiple);
         responseMap.put("paging",paging);
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", responseMap));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "작성자 검색 조회", responseMap));
 //        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
     }
 
