@@ -8,10 +8,15 @@ import com.travlej.backend.post.dto.PostCourseDTO;
 import com.travlej.backend.post.dto.PostDTO;
 import com.travlej.backend.post.entity.Post;
 import com.travlej.backend.post.repository.PostRepository;
+import com.travlej.backend.postReport.dto.PostReportDTO;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +42,16 @@ public class PostService {
         this.modelMapper = modelMapper;
     }
 
-    public List<PostDTO> findPostList(){
+    public Page<PostDTO> findPostList(Pageable pageable){
 
-        List<Post> postList = postRepository.findAll();
+//        Page<Post> postList = postRepository.findAll();
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0: pageable.getPageNumber() - 1,
+                 7,
+                Sort.by("postId").ascending());
 
-        return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
+
+        return postRepository.findAll(pageable).map(post -> modelMapper.map(post, PostDTO.class));
+//        return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
     }
 
     public PostDTO findPostByPostId(int postId){
@@ -62,6 +72,13 @@ public class PostService {
 
         return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
     }
+
+//    public List<PostCourseDTO> selectDetailSearch(PostCourseDTO postCourseDTO) {
+//
+//        List<Post> courseList = postRepository.findByWriterContainingAndPostDateAndattDTOListandLikes(postCourseDTO.getWriter(), postCourseDTO.getPostDate(), postCourseDTO.getAttDTOList(), postCourseDTO.getLikes());
+//
+//        return courseList.stream().map(post -> modelMapper.map(post, PostCourseDTO.class)).collect(Collectors.toList());
+//    }
 
     // post create
     @Transactional
@@ -158,10 +175,7 @@ public class PostService {
 //        return modelMapper.map(result, PostDTO.class);
 //    }
 
-    public List<PostDTO> selectDetailSearch(PostDTO postDTO) {
 
-        List<Post> postList = postRepository.findByWriterContainingAndPostDate(postDTO.getWriter(), postDTO.getPostDate());
 
-        return postList.stream().map(post -> modelMapper.map(post, PostDTO.class)).collect(Collectors.toList());
-    }
+
 }
