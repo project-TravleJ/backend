@@ -2,10 +2,11 @@ package com.travlej.backend.postReport.service;
 
 import com.travlej.backend.postReport.dto.PostReportDTO;
 import com.travlej.backend.postReport.entity.PostReport;
-import com.travlej.backend.repository.PostReportRepository;
+import com.travlej.backend.postrequest.request.dto.RequestDTO;
+import com.travlej.backend.postReport.repository.PostReportRepository;
+import com.travlej.backend.postrequest.request.entity.Request;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,8 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,12 +56,21 @@ public class PostReportService {
         return modelMapper.map(result, PostReportDTO.class);
     }
 
-    public List<PostReportDTO> findAllPostReport() {
+    public Page<PostReportDTO> findAllPostReport(Pageable pageable) {
 
-        List<PostReport> postReportList = postReportRepository.findAllPostReport();
+//        List<PostReport> postReportList = postReportRepository.findAllPostReport();
 
-        return postReportList.stream().map(postReport -> modelMapper.map(postReport, PostReportDTO.class)).collect(Collectors.toList());
+        //offset, limit, sort 순으로 값을 전달함
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0: pageable.getPageNumber() - 1,
+                pageable.getPageSize(),
+                Sort.by("reportId").ascending());
+
+
+        return postReportRepository.findAll(pageable).map(postReport -> modelMapper.map(postReport, PostReportDTO.class));
+//        return postReportList.stream().map(postReport -> modelMapper.map(postReport, PostReportDTO.class)).collect(Collectors.toList());
     }
+
+
 
     public PostReportDTO findOnePostReport(int postReportId){
 
@@ -78,12 +86,15 @@ public class PostReportService {
         return null;
     }
 
-    public List<PostReportDTO> detailSearchReport(PostReportDTO postReportDTO){
+    public Page<PostReportDTO> SearchByReportMultiple(PostReportDTO postReportDTO, Pageable pageable){
 
-        List<PostReport> postReportList = postReportRepository.findByReportWriterContainingAndReportToMemberContainingAndReportDateContaining(postReportDTO.getReportWriter(), postReportDTO.getReportToMember(), postReportDTO.getReportDate());
+        Page<PostReport> postReportPage = postReportRepository.findByReportWriterContainingAndReportToMemberContainingAndReportDateContainingAndReportManagementContaining(
+                postReportDTO.getReportWriter(), postReportDTO.getReportToMember(), postReportDTO.getReportDate(),postReportDTO.getReportManagement(), pageable);
 
-        return postReportList.stream().map(PostReport -> modelMapper.map(PostReport, PostReportDTO.class)).collect(Collectors.toList());
 
-}
+        return postReportPage.map(postReport -> modelMapper.map(postReport, PostReportDTO.class));
+
+
+    }
 }
 

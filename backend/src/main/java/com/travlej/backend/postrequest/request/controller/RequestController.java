@@ -1,13 +1,26 @@
 package com.travlej.backend.postrequest.request.controller;
 
+import com.travlej.backend.common.paging.PagingButtonInfo;
+import com.travlej.backend.common.paging.Pagenation;
 import com.travlej.backend.common.ResponseDto;
 import com.travlej.backend.postrequest.request.dto.RequestDTO;
 import com.travlej.backend.postrequest.request.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.spring.web.readers.operation.ResponseMessagesReader;
+
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/api/v1/requests")
@@ -20,9 +33,26 @@ public class RequestController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ResponseDto> selectRequestAll(){
+    public ResponseEntity<ResponseDto> selectRequestAll(ModelAndView mv, @PageableDefault Pageable pageable){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", requestService.findRequestList()));
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+        Page<RequestDTO> requestList = requestService.findRequestList(pageable);
+
+        PagingButtonInfo paging = Pagenation.getPagingButtonInfo(requestList);
+
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("requestList", requestList);
+        responseMap.put("paging",paging);
+
+//        mv.addObject("requestList", requestList);
+//        mv.addObject("paging", paging);
+//        mv.setViewName("requests/page");
+
+//        return ResponseEntity.ok().headers(headers).body(new ResponseDto(HttpStatus.OK,"전제 초회 성공",responseMap));
+//      return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", requestService.findRequestList(pageable)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "전체 조회 성공", responseMap));
     }
 
 
@@ -57,10 +87,26 @@ public class RequestController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "게시글 삭제 완료", requestService.deleteRequest(requestId)));
     }
 
-    @PostMapping("/search")
-    public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody(required = false) RequestDTO requestDTO){
+//    @PostMapping("/search")
+//    public ResponseEntity<ResponseDto> SearchByMultiple(@RequestBody(required = false) RequestDTO requestDTO){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
+//    }
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
+    @PostMapping("/search")
+    public ResponseEntity<ResponseDto> SearchByMultiple(ModelAndView mv, @PageableDefault Pageable pageable, @RequestBody(required = false) RequestDTO requestDTO){
+
+        Page<RequestDTO> searchByMultiple = requestService.SearchByMultiple(requestDTO, pageable);
+
+        PagingButtonInfo paging = Pagenation.getPagingButtonInfo(searchByMultiple);
+
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("searchByMultiple", searchByMultiple);
+        responseMap.put("paging",paging);
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "작성자 검색 조회", responseMap));
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "작성자 검색 조회",requestService.SearchByMultiple(requestDTO)));
     }
+
 
 }

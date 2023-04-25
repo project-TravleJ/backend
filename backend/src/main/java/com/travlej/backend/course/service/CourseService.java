@@ -71,4 +71,18 @@ public class CourseService {
 
         return null;
     }
+
+    public List<CourseDTO> findCourses() {
+
+        List<Course> result = courseRepository.findAll();
+
+        return result.stream().map(course -> modelMapper.map(course, CourseDTO.class)).collect(Collectors.toList());
+    }
+
+    public String deleteCourses(int postId) {
+
+        courseRepository.deleteByPost_PostId(postId);
+
+        return postId + "의 post에 등록된 코스들이 삭제되었습니다.";
+    }
 }

@@ -1,20 +1,22 @@
 package com.travlej.backend.course.dto;
 
+import com.travlej.backend.attraction.dto.AttractionDTO;
+
 public class CourseDTO {
 
     private int CourseId;
     private int idx;
     private int postId;
-    private int attractionId;
+    private AttractionDTO attraction;
     private String courseMemo;
 
     public CourseDTO() {}
 
-    public CourseDTO(int courseId, int idx, int postId, int attractionId, String courseMemo) {
+    public CourseDTO(int courseId, int idx, int postId, AttractionDTO attraction, String courseMemo) {
         CourseId = courseId;
         this.idx = idx;
         this.postId = postId;
-        this.attractionId = attractionId;
+        this.attraction = attraction;
         this.courseMemo = courseMemo;
     }
 
@@ -42,12 +44,12 @@ public class CourseDTO {
         this.postId = postId;
     }
 
-    public int getAttractionId() {
-        return attractionId;
+    public AttractionDTO getAttraction() {
+        return attraction;
     }
 
-    public void setAttractionId(int attractionId) {
-        this.attractionId = attractionId;
+    public void setAttraction(AttractionDTO attraction) {
+        this.attraction = attraction;
     }
 
     public String getCourseMemo(){
@@ -55,7 +57,7 @@ public class CourseDTO {
     }
 
     public void setCourseMemo(String courseMemo) {
-        this.courseMemo =courseMemo;
+        this.courseMemo = courseMemo;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class CourseDTO {
                 "CourseId=" + CourseId +
                 ", idx=" + idx +
                 ", postId=" + postId +
-                ", attractionId=" + attractionId +
+                ", attraction=" + attraction +
                 ", courseMemo =" + courseMemo +
                 '}';
     }

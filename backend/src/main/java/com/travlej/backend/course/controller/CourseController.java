@@ -26,18 +26,28 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping("/posts/{postId}/courses")
-    public ResponseEntity<ResponseDto> selectCourseByPostId(@PathVariable int postId){
+    @GetMapping("/courses")
+    public ResponseEntity<ResponseDto> selectAllCourses() {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 코스 조회 완료", courseService.findCourseByPostId(postId)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "코스 전체 조회 완료", courseService.findCourses()));
     }
 
-    @PostMapping("/posts/{postId}/courses")
-    public ResponseEntity<ResponseDto> registCourse(@PathVariable int postId, @RequestBody List<CourseDTO> courseDTOList){
+//    @GetMapping("/posts/{postId}/courses")
+//    public ResponseEntity<ResponseDto> selectCourseByPostId(@PathVariable int postId){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "게시글 코스 조회 완료", courseService.findCourseByPostId(postId)));
+//    }
+//
+//    @PostMapping("/posts/{postId}/courses")
+//    public ResponseEntity<ResponseDto> registCourse(@PathVariable int postId, @RequestBody List<CourseDTO> courseDTOList){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "코스 등록 성공", courseService.registNewCourseList(postId, courseDTOList)));
+//    }
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "코스 등록 성공", courseService.registNewCourseList(postId, courseDTOList)));
+    @DeleteMapping("/posts/{postId}/courses")
+    public ResponseEntity<ResponseDto> deleteCourseByPostId(@PathVariable int postId){
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NO_CONTENT, "코스 삭제 완료", courseService.deleteCourses(postId)));
     }
-
-
 
 }

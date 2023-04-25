@@ -1,8 +1,8 @@
 package com.travlej.backend.config;
 
-import com.travlej.backend.jwt.JwtAccessDeniedHandler;
-import com.travlej.backend.jwt.JwtAuthenticationEntryPoint;
-import com.travlej.backend.jwt.TokenProvider;
+//import com.travlej.backend.jwt.JwtAccessDeniedHandler;
+//import com.travlej.backend.jwt.JwtAuthenticationEntryPoint;
+//import com.travlej.backend.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -25,17 +25,17 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration {
 
-    private final TokenProvider tokenProvider;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
-
-    public SecurityConfiguration(TokenProvider tokenProvider,
-                                 JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint
-            , JwtAccessDeniedHandler jwtAccessDeniedHandler) {
-        this.tokenProvider = tokenProvider;
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
-    }
+//    private final TokenProvider tokenProvider;
+//    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+//    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+//
+//    public SecurityConfiguration(TokenProvider tokenProvider,
+//                                 JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint
+//            , JwtAccessDeniedHandler jwtAccessDeniedHandler) {
+//        this.tokenProvider = tokenProvider;
+//        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+//        this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
+//    }
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -70,8 +70,8 @@ public class SecurityConfiguration {
                 .and()
                 // exception handling
                 .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
+//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .accessDeniedHandler(jwtAccessDeniedHandler)
 
                 // 시큐리티는 기본적으로 세션을 사용하지만 API 서버에선 세션을 사용하지 않기 때문에 세션 설정을 Stateless 로 설정
                 .and()
@@ -83,9 +83,9 @@ public class SecurityConfiguration {
                 .formLogin().disable()
                 .httpBasic().disable()
                 .cors()
-                .and()
+                .and();
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
-                .apply(new JwtSecurityConfiguration(tokenProvider));
+//                .apply(new JwtSecurityConfiguration(tokenProvider));
 
         return http.build();
     }
@@ -94,7 +94,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // 로컬 React에서 오는 요청은 CORS 허용해준다.
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001"));
         configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-Type",
                 "Access-Control-Allow-Headers", "Authorization", "X-Requested-With", "Auth"));
