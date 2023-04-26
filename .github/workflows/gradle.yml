@@ -2,9 +2,12 @@ name: backendCI
 
 on: 
   push:
-    branches: [ "develop" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -17,18 +20,17 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
          
-#     - name: Grant execute permission for gradle
-#       run: chmod +x gradlew
-#     - name: Build with Gradle
-#       run: ./gradle build
-      
+    - name: Grant execute permission for gradle
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradle build
       
     # 웹 이미지 빌드 및 도커허브에 push
     - name: web docker build and push
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -t ${{ secrets.DOCKER_REPO }}/ci-test ./
-        docker push ${{ secrets.DOCKER_REPO }}/ci-test
+        docker build -t ${{ secrets.DOCKER_REPO }}/travelj ./
+        docker push ${{ secrets.DOCKER_REPO }}/travelj
     - name: Get timestamp
       uses: gerred/actions/current-time@master
       id: current-time
@@ -47,8 +49,9 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: cicd
-        environment_name: Cicd-env
+        application_name: travelj
+        environment_name: travelj-env
         version_label: "github-action--${{ steps.format-time.outputs.replaced }}"
         region: ap-northeast-2
-        deployment_package: Dockerrun.aws.json
+        deployment_package: travelj.aws.json
+#         existing_bucket_name: {버킷 이름}
