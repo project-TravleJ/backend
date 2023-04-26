@@ -64,12 +64,22 @@ public class CourseService {
     }
 
     @Transactional
-    public List<Course> updateCourseList(Post post, List<CourseDTO> courseDTOList){
+    public List<CourseDTO> updateCourseList(int postId, List<CourseDTO> courseDTOList){
 
-        List<Course> resultList = /* courseDTOList 변환 */ null;
+        for(CourseDTO courseDTO: courseDTOList){
+            courseDTO.setPostId(postId);
+        }
 
+        List<Course> courses = courseDTOList.stream().map(courseDTO -> modelMapper.map(courseDTO, Course.class)).collect(Collectors.toList());
 
-        return null;
+        for(Course course: courses){
+//            course.setPost(post);
+            courseRepository.save(course);
+        }
+
+        List<CourseDTO> resultList = courses.stream().map(course -> modelMapper.map(course, CourseDTO.class)).collect(Collectors.toList());
+
+        return resultList;
     }
 
     public List<CourseDTO> findCourses() {

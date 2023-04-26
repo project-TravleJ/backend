@@ -105,31 +105,28 @@ public class PostService {
         List<CourseDTO> courseList = updatePost.getCourseList();
         String context = updatePost.getContext();
 
-        // update값이 비어있거나 기존과 같다면, 갱신하지 않는다.
-        if(!"".equals(title) && !post.getPostTitle().equals(title)){    // 다음과 동일 if( !("".equals.(title) && post.getPostTitle().equals(title) ) )
-            post.setPostTitle(title);
-        }
-        if((null!=start) && !post.getPostStart().equals(start)) {
-            post.setPostStart(start);
-        }
-        if((null!=end) && !post.getPostEnd().equals(end)){
-            post.setPostEnd(end);
-        }
-        if((null!=courseList || courseList.size()==0) && !post.getCourseList().equals(courseList)){
-            post.setCourseList(courseList.stream().map(course -> modelMapper.map(course, Course.class)).collect(Collectors.toList()));
-        }
-        if(!"".equals(context) && !post.getContext().equals(context)){
-            post.setContext(context);
-        }
+        post.setPostTitle(title);
+        post.setPostStart(start);
+        post.setPostEnd(end);
+        post.setContext(context);
 
         System.out.println(post);
 
         java.util.Date date = new Date();
         post.setPostDate(date);
 
-        Post result = postRepository.save(post);
+        Post resultEntity = postRepository.save(post);
 
-        return modelMapper.map(result, PostDTO.class);
+//        post.setCourseList(courseList.stream().map(course -> modelMapper.map(course, Course.class)).collect(Collectors.toList()));
+        for(CourseDTO course : courseList){
+            course.setPostId(post.getPostId());
+        }
+
+        PostDTO result = modelMapper.map(resultEntity, PostDTO.class);
+
+        result.setCourseList(courseList);
+
+        return result;
     }
 
     @Transactional
