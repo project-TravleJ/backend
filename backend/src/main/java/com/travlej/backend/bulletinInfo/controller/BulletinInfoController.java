@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/v1/bulletinInfo")
+@RequestMapping("/api/v1/bulletin")
 public class BulletinInfoController {
 
     private final BulletinInfoService bulletinInfoService;
